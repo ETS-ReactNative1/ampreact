@@ -29,6 +29,9 @@ const useStyles = makeStyles((theme) => ({
   mycard: {
     width: "100%",
     textDecoration: 'none',
+  },
+  a: {
+    underline: "none",
   }
 }));
 
@@ -59,8 +62,8 @@ export default function ArtistCard() {
       
       <List >
         {data.map(item =>
-          <ListItem key={item.artistID} onClick={() => artistIdToLocalStorage(item.artistID)}>
-            <a href="/ArtistAlbums" className={classes.mycard} >
+          <ListItem key={item.artistID} >
+            <a href="/ArtistAlbums" className={classes.mycard} onClick={() => artistIdToLocalStorage(item.artistID)}>
               <Card className={classes.root} >
                 <div className={classes.details}>
                   <CardContent className={classes.content}>

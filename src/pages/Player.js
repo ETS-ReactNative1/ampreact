@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import StockImg from "./images/two.jpg";
 import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
-import StopIcon from '@material-ui/icons/Stop';
+import PauseIcon from '@material-ui/icons/Pause';
 import SkipNextIcon from '@material-ui/icons/SkipNext';
 import { ButtonGroup } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
@@ -23,23 +23,35 @@ const useStyles = makeStyles((theme) => ({
   iconSizeLarge: {
     fontSize: 70,
   },
-  myh1: {
+  h1: {
     textAlign: 'center',
   }
 }));
 
 export default function PlayerCard() {
   const classes = useStyles();
+  const [showIcon, setShowIcon] = useState(true)
+
+  function iconShow() {
+    setShowIcon(true)
+  }
+
+  function iconHide() {
+    setShowIcon(false)
+  }
+
   return ( 
     <div  > 
-      <h1 className={classes.myh1}>Player Page</h1>
+      <h1 className={classes.h1}>Player Page</h1>
       <img src={StockImg} alt="logo" className={classes.root}/>
       <div>
         <Box className={classes.playerButtonGroup}>
           <ButtonGroup>
           <SkipPreviousIcon className={classes.iconSizeLarge} />
-            <PlayArrowIcon className={classes.iconSizeLarge} />
-            <StopIcon className={classes.iconSizeLarge} />
+
+          { showIcon ? <PlayArrowIcon className={classes.iconSizeLarge} onClick={() => iconHide()}/>
+          : <PauseIcon className={classes.iconSizeLarge} onClick={() => iconShow()} /> }
+            
             <SkipNextIcon className={classes.iconSizeLarge} />
           </ButtonGroup>
         </Box>

@@ -1,9 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import IM2 from './images/two2.jpg';
-
-// var store = require('store')
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -14,40 +11,34 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
   },
   homeImage: {
-    width: "150px"
+    width: "125px"
   }
 }));
 
 export default function Home() {
-const classes = useStyles();
+  const classes = useStyles();
+  const [data, setData] = useState([])
+
+  useEffect(() => {
+    async function fetchHome() {
+      const response = await fetch(
+        "http://192.168.0.91:9090/RandomPics"
+      );
+      const fetchHomez = await response.json(response);
+      setData(fetchHomez);
+    }
+    fetchHome();
+  }, []);
+
   return (
     <div className={classes.Home}>
       <div className={classes.root}>
-        <Grid container spacing={3}>
-          <Grid item xs={6} sm={3}>
-            <img src={IM2} className={classes.homeImage} alt="logo" />
-          </Grid>
-          <Grid item xs={6} sm={3}>
-            <img src={IM2} className={classes.homeImage} alt="logo" />
-          </Grid>
-          <Grid item xs={6} sm={3}>
-            <img src={IM2} className={classes.homeImage} alt="logo" />
-          </Grid>
-          <Grid item xs={6} sm={3}>
-              <img src={IM2} className={classes.homeImage} alt="logo" />
-          </Grid>
-          <Grid item xs={6} sm={3}>
-            <img src={IM2} className={classes.homeImage} alt="logo" />
-          </Grid>
-          <Grid item xs={6} sm={3}>
-            <img src={IM2} className={classes.homeImage} alt="logo" />
-          </Grid>
-          <Grid item xs={6} sm={3}>
-            <img src={IM2} className={classes.homeImage} alt="logo" />
-          </Grid>
-          <Grid item xs={6} sm={3}>
-            <img src={IM2} className={classes.homeImage} alt="logo" />
-          </Grid>
+        <Grid container spacing={2}>
+          {data.map(item =>
+            <Grid item xs={6} sm={3} key={item}>
+              <a href="/Albums"><img src={item} className={classes.homeImage} alt="logo" /></a>
+            </Grid>
+          )}
         </Grid>
       </div>
     </div>

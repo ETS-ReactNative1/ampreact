@@ -49,6 +49,7 @@ const useStyles = makeStyles((theme) => ({
   fullList: {
     width: 'auto',
   },
+  
 }));
 
 export default function ButtonAppBar() {
@@ -114,9 +115,13 @@ export default function ButtonAppBar() {
         </ListItem>
         <ListItem>
           <ListItemIcon><MusicNoteIcon /></ListItemIcon>
-          <Link to="/Player">
-            <ListItemText primary={"Player"} />
-          </Link>
+            
+
+            <Link to="/Player" >
+              
+              <ListItemText primary={"Player"} />
+            </Link>
+          
         </ListItem>
       </List>
     </div>
