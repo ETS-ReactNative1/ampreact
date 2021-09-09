@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-// import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
+
+import { makeStyles } from '@material-ui/core/styles';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
-// import StopIcon from '@material-ui/icons/Stop';
-import PauseIcon from '@material-ui/icons/Pause'
-// import { IconButton } from '@material-ui/core';
+import PauseIcon from '@material-ui/icons/Pause';
+import AddIcon from '@material-ui/icons/Add';
+// import { ButtonGroup } from '@material-ui/core';
+import AmpBarComp from '../components/AmpBarComp';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,7 +34,17 @@ const useStyles = makeStyles((theme) => ({
   },
   pausebtn: {
     color: "gold",
-    fontSize: 70,
+    fontSize: 80,
+  },
+  fuckme: {
+    marginTop: "auto",
+    marginBottom: "auto",
+    marginLeft: "auto",
+    
+  },
+  fuck: {
+    fontSize: 55,
+    
   }
 }));
 
@@ -65,56 +76,73 @@ export default function SongCard() {
 
   const [showIcon, setShowIcon] = useState(true)
   
-  function playAudio(elementID) {
-    console.log(elementID)
-    const audioEl = document.getElementsByClassName(elementID)[0]
+  // function playAudio(elementID) {
+  //   console.log(elementID)
+  //   const audioEl = document.getElementsByClassName(elementID)[0]
+  //   audioEl.play()
+  //   setShowIcon(false)
+  // }
+
+  // function stopAudio(elementID) {
+  //   const audioEl = document.getElementsByClassName(elementID)[0]
+  //   audioEl.pause()
+  //   setShowIcon(true)
+  // }
+
+  function playAudio() {
+    const audioEl = document.getElementsByClassName("Audio2")[0]
     audioEl.play()
     setShowIcon(false)
   }
 
-  function stopAudio(elementID) {
-    const audioEl = document.getElementsByClassName(elementID)[0]
+  function stopAudio() {
+    const audioEl = document.getElementsByClassName("Audio2")[0]
     audioEl.pause()
     setShowIcon(true)
   }
 
 
-
-
   return ( 
-  <div>
+    <div>
+      <AmpBarComp />
+      <h1 className={classes.h1}>Songs Page</h1>
+      <List>
+        {data.map(item =>
+        <div key={item.fileID}>
+          <ListItem >
+            <Card className={classes.root} onClick={() => songIdToLocalStorage(item.fileID)}>
+              <div className={classes.details}>
+                <CardContent className={classes.content}>
+                  <Typography component="h5" variant="h5">
+                    {item.title}
+                  </Typography>
+                  <Typography variant="subtitle1" color="textSecondary">
+                    {item.artist}
+                  </Typography>
+                  
+                </CardContent>
+              </div>
+              {/* <ButtonGroup>
+                { showIcon ? <PlayArrowIcon id={item.fileID} className={classes.fuck} onClick={() => playAudio(item.fileID)}/> 
+                : <PauseIcon id={item.fileID} className={classes.fuck} onClick={() => stopAudio(item.fileID)}/> }
+              </ButtonGroup> */}
 
-    <h1 className={classes.h1}>Songs Page</h1>
-    <List>
-      {data.map(item =>
-      <div key={item.fileID}>
-        <ListItem >
-          <Card className={classes.root} onClick={() => songIdToLocalStorage(item.fileID)}>
-            <div className={classes.details}>
-              <CardContent className={classes.content}>
-                <Typography component="h5" variant="h5">
-                  {item.title}
-                </Typography>
-                <Typography variant="subtitle1" color="textSecondary">
-                  {item.artist}
-                </Typography>
-              </CardContent>
-            </div>
-          </Card>
-          { showIcon ? <PlayArrowIcon id={item.fileID} className={classes.playbtn} onClick={() => playAudio(item.fileID)}/> 
-          : <PauseIcon id={item.fileID} className={classes.pausebtn} onClick={() => stopAudio(item.fileID)}/> }
-          
-          <audio className={item.fileID}>
-            <source src={item.httpaddr}></source>
-          </audio>    
-            
-          
-        </ListItem>
-        
-      </div>
-      )}
-    </List>
-  </div>
+
+
+              <div key={item.fileID} className={classes.fuckme}>
+                { showIcon ? <PlayArrowIcon key={item.fileID} className={classes.fuck} onClick={() => playAudio(item.fileID)}/> 
+                : <PauseIcon key={item.fileID} className={classes.fuck} onClick={() => stopAudio(item.fileID)}/> }
+                <AddIcon className={classes.fuck}/>
+              </div>
+            </Card>
+            <audio className={item.fileID} key={item.fileID}>
+              <source src={item.httpaddr}></source>
+            </audio>
+          </ListItem>
+        </div>
+        )}
+      </List>
+    </div>
   );
 }
 

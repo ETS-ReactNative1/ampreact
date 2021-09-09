@@ -6,7 +6,11 @@ body {
   background-color: grey;
 }
 
-.MuiListItem-root {
-  text-decoration: none;
+.Audio1 {
+  width: 100%;
 }
+
+/* .MuiListItem-root {
+  text-decoration: none;
+} */
 

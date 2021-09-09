@@ -5,6 +5,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+import AmpBarComp from '../components/AmpBarComp';
+import { Container } from '@material-ui/core';
 // import history from './History';
 // import ReactRouterDOM from 'react-router-dom';
 // const { Link } = ReactRouterDOM;
@@ -32,6 +34,9 @@ const useStyles = makeStyles((theme) => ({
   },
   a: {
     underline: "none",
+  },
+  myul: {
+    display: "none"
   }
 }));
 
@@ -51,20 +56,37 @@ export default function ArtistCard() {
     fetchArtists();
   }, []);
 
-  function artistIdToLocalStorage(artid) {
-    console.log(artid)
-    store.set('artistID', { artistID:artid })
-  };
+  // function artistIdToLocalStorage(artid) {
+  //   console.log(artid)
+  //   store.set('artistID', { artistID:artid })
+  //   setShowList1(true)
+  // };
+
+  const [showlist1, setShowList1] = useState(true);
+
+  function hideList() {
+    // console.log(elID)
+    // var boo = document.getElementsByClassName(elID).style.display = "none";
+    setShowList1(false)
+  }
+  function showList() {
+    // var bar = document.getElementsByClassName(elID).style.style.display = "block";
+    // store.set('artistID', { artistID:elID })
+    setShowList1(true)
+    
+  }
 
   return ( 
     <div>
+      <AmpBarComp />
       <h1 className={classes.myh1}>Artist Page</h1>
       
       <List >
-        {data.map(item =>
-          <ListItem key={item.artistID} >
-            <a href="/ArtistAlbums" className={classes.mycard} onClick={() => artistIdToLocalStorage(item.artistID)}>
-              <Card className={classes.root} >
+        {data.map((item) =>
+        <div key={item.artistID}>
+          <ListItem key={item.artistID} onClick={() => hideList()}>
+            {/* <a href="/ArtistAlbums" className={classes.mycard} onClick={() => artistIdToLocalStorage(item.artistID)}> */}
+              <Card className={classes.root}>
                 <div className={classes.details}>
                   <CardContent className={classes.content}>
                     <Typography component="h5" variant="h5">
@@ -76,8 +98,28 @@ export default function ArtistCard() {
                   </CardContent>
                 </div>
               </Card>
-            </a>
+            {/* </a> */}
+            
           </ListItem>
+          <Container key={item.artistID + "con"}>
+            <div>
+              <ul >
+                <li onClick={() => showList()}>fuck one</li>
+                <li onClick={() => showList()}>fuck two</li>
+                <li onClick={() => showList()}>fuck three</li>
+              </ul>
+            </div>
+          </Container>
+
+          { 
+            showlist1
+          ? 
+            <ListItem key={item.artistID} />
+          :
+            <Container key={item.artistID + "con"} />
+          }
+
+        </div>
         )}
       </List>
     </div>

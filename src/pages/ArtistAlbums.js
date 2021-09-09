@@ -6,6 +6,7 @@ import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+import AmpBarComp from '../components/AmpBarComp';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -58,9 +59,10 @@ export default function ArtistAlbums() {
 
   return (
     <div >
+      <AmpBarComp />
       {data.map(item =>
         <List container spacing={3} key={item.albumID}>
-          {/* <a href="/AlbumsSongs" className={classes.myhref}> */}
+          <a href="/Z" className={classes.myhref}>
             <ListItem onClick={() => albumIdToLocalStorage(item.albumID)}>
               <Card className={classes.root}>
                 <CardMedia
@@ -80,7 +82,7 @@ export default function ArtistAlbums() {
                 </div>
               </Card>
             </ListItem>
-          {/* </a> */}
+          </a>
         </List>
       )}
     </div>
