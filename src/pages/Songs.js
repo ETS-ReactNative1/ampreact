@@ -9,7 +9,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import PauseIcon from '@material-ui/icons/Pause';
 import AddIcon from '@material-ui/icons/Add';
-// import { ButtonGroup } from '@material-ui/core';
 import AmpBarComp from '../components/AmpBarComp';
 
 const useStyles = makeStyles((theme) => ({
@@ -44,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
   },
   fuck: {
     fontSize: 55,
-    
+    textOverflow: "…",
   }
 }));
 
@@ -113,7 +112,7 @@ export default function SongCard() {
             <Card className={classes.root} onClick={() => songIdToLocalStorage(item.fileID)}>
               <div className={classes.details}>
                 <CardContent className={classes.content}>
-                  <Typography component="h5" variant="h5">
+                  <Typography component="h6" variant="h6">
                     {item.title}
                   </Typography>
                   <Typography variant="subtitle1" color="textSecondary">
@@ -127,7 +126,8 @@ export default function SongCard() {
                 : <PauseIcon id={item.fileID} className={classes.fuck} onClick={() => stopAudio(item.fileID)}/> }
               </ButtonGroup> */}
 
-
+{/* <PlayArrowIcon style={{ display: showIcon ? "block" : "none" }} key={item.fileID} className={classes.fuck} onClick={() => playAudio(item.fileID)}/> 
+<PauseIcon style={{ display: showIcon ? "none" : "block" }} key={item.fileID} className={classes.fuck} onClick={() => stopAudio(item.fileID)}/> */}
 
               <div key={item.fileID} className={classes.fuckme}>
                 { showIcon ? <PlayArrowIcon key={item.fileID} className={classes.fuck} onClick={() => playAudio(item.fileID)}/> 

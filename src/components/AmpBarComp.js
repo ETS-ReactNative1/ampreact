@@ -87,7 +87,7 @@ export default function AmpBarComp() {
         </ListItem>
         <ListItem>
           <ListItemIcon><InboxIcon /></ListItemIcon>
-          <Link to="/Artists">
+          <Link to="/Artist2">
             <ListItemText primary={"Artists"} />
           </Link>
         </ListItem>
@@ -158,7 +158,7 @@ export default function AmpBarComp() {
       </AppBar>
 
       
-      <audio className={"Audio1"} controls={true}>
+      <audio className={"Audio1"} controls={true} style={{margin: "10px"}}>
         <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></source>
       </audio>
       

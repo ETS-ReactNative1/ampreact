@@ -7,10 +7,6 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import AmpBarComp from '../components/AmpBarComp';
 import { Container } from '@material-ui/core';
-// import history from './History';
-// import ReactRouterDOM from 'react-router-dom';
-// const { Link } = ReactRouterDOM;
-
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -41,7 +37,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ArtistCard() {
-  var store = require('store')
   const classes = useStyles();
   const [data, setData] = useState([])
 
@@ -56,36 +51,16 @@ export default function ArtistCard() {
     fetchArtists();
   }, []);
 
-  // function artistIdToLocalStorage(artid) {
-  //   console.log(artid)
-  //   store.set('artistID', { artistID:artid })
-  //   setShowList1(true)
-  // };
-
-  const [showlist1, setShowList1] = useState(true);
-
-  function hideList() {
-    // console.log(elID)
-    // var boo = document.getElementsByClassName(elID).style.display = "none";
-    setShowList1(false)
-  }
-  function showList() {
-    // var bar = document.getElementsByClassName(elID).style.style.display = "block";
-    // store.set('artistID', { artistID:elID })
-    setShowList1(true)
-    
-  }
+  const [showlist1, setShowList1] = useState(false);
 
   return ( 
     <div>
       <AmpBarComp />
       <h1 className={classes.myh1}>Artist Page</h1>
-      
       <List >
         {data.map((item) =>
-        <div key={item.artistID}>
-          <ListItem key={item.artistID} onClick={() => hideList()}>
-            {/* <a href="/ArtistAlbums" className={classes.mycard} onClick={() => artistIdToLocalStorage(item.artistID)}> */}
+        <div key={"divlistitem" + item.artistID}>
+          <ListItem onClick={() => setShowList1(true)}  key={item.artistID}>
               <Card className={classes.root}>
                 <div className={classes.details}>
                   <CardContent className={classes.content}>
@@ -98,27 +73,16 @@ export default function ArtistCard() {
                   </CardContent>
                 </div>
               </Card>
-            {/* </a> */}
-            
+            <Container style={{ display: showlist1 ? "block" : "none" }}>
+              <div>
+                <ul>
+                  <li key="0" onClick={() => setShowList1(false)}>fuck one</li>
+                  <li key="1" onClick={() => setShowList1(false)}>fuck two</li>
+                  <li key="2" onClick={() => setShowList1(false)}>fuck three</li>
+                </ul>
+              </div>
+            </Container> 
           </ListItem>
-          <Container key={item.artistID + "con"}>
-            <div>
-              <ul >
-                <li onClick={() => showList()}>fuck one</li>
-                <li onClick={() => showList()}>fuck two</li>
-                <li onClick={() => showList()}>fuck three</li>
-              </ul>
-            </div>
-          </Container>
-
-          { 
-            showlist1
-          ? 
-            <ListItem key={item.artistID} />
-          :
-            <Container key={item.artistID + "con"} />
-          }
-
         </div>
         )}
       </List>

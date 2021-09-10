@@ -63,29 +63,27 @@ export default function AlbumCard() {
       <AmpBarComp />
       <h1 className={classes.h1}>Albums Page</h1>
       {data.map(item =>
-          <List container spacing={3} key={item.AlbumID}>
-            {/* <a href="/AlbumsSongs" className={classes.myhref}> */}
-              <ListItem onClick={() => albumIdToLocalStorage(item.AlbumID)}>
-                <Card className={classes.root}>
-                  <CardMedia
-                    className={classes.cover}
-                    image={item.PicPath}
-                    title="Live from space album cover"
-                  />
-                  <div className={classes.details}>
-                    <CardContent className={classes.content}>
-                      <Typography component="h5" variant="h5">
-                        {item.Album}
-                      </Typography>
-                      <Typography variant="subtitle1" color="textSecondary">
-                        Mac Miller
-                      </Typography>
-                    </CardContent>
-                  </div>
-                </Card>
-              </ListItem>
-            {/* </a> */}
-          </List>
+        <List spacing={3} key={item.AlbumID}>
+            <ListItem onClick={() => albumIdToLocalStorage(item.AlbumID)}>
+              <Card className={classes.root}>
+                <CardMedia
+                  className={classes.cover}
+                  image={item.PicPath}
+                  title="Live from space album cover"
+                />
+                <div className={classes.details}>
+                  <CardContent className={classes.content}>
+                    <Typography component="h5" variant="h5">
+                      {item.Album}
+                    </Typography>
+                    <Typography variant="subtitle1" color="textSecondary">
+                      Mac Miller
+                    </Typography>
+                  </CardContent>
+                </div>
+              </Card>
+            </ListItem>
+        </List>
       )}
     </div>
   );
