@@ -66,8 +66,6 @@ export default function SongCard() {
     fetchSongs();
   }, []);
 
-  console.log(data);
-
   function songIdToLocalStorage(songid) {
     console.log(songid)
     store.set('songID', { songID:songid })

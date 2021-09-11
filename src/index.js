@@ -9,27 +9,27 @@ import Songs from './pages/Songs.js';
 import Playlists from './pages/Playlists';
 import AddPlaylists from './pages/AddPlaylists';
 import Player from './pages/Player';
-import AlbumsSongs from './pages/AlbumsSongs';
-import ArtistAlbums from './pages/ArtistAlbums';
+import AlbumsSongs from './pages/SongsForAlbum';
+import SongsForAlbum from './pages/SongsForAlbum';
 import './index.css';
-import DetailedAccordion from './pages/ArtistTWO';
+import Artists from './pages/Artists';
 
 export default function IndexPage() {
 
   return (
     <div>
-          <Route exact path='/' component={Home} />
-          <Route path='/Artist2' component={DetailedAccordion} />
-          <Route path='/Albums' component={Albums} />
-          <Route path='/Songs' component={Songs} />
-          <Route path='/Playlists' component={Playlists} />
-          <Route path='/AddPlaylists' component={AddPlaylists} />
-          <Route path='/Player' component={Player} />
-          <Route path='/ArtistAlbums' component={ArtistAlbums} />
-          <Route path='/Z' component={AlbumsSongs} />
-      <audio className={"Audio2"} >
+      <audio id="Audio2" className={"Audio2"} controls={true}>
         <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></source>
       </audio> 
+      <Route exact path='/' component={Home} />
+      <Route path='/Artists' component={Artists} />
+      <Route path='/Albums' component={Albums} />
+      <Route path='/Songs' component={Songs} />
+      <Route path='/Playlists' component={Playlists} />
+      <Route path='/AddPlaylists' component={AddPlaylists} />
+      <Route path='/Player' component={Player} />
+      <Route path='/SongsForAlbum' component={SongsForAlbum} />
+      <Route path='/Z' component={AlbumsSongs} />
     </div>
   );
 }

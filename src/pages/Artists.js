@@ -1,49 +1,37 @@
 import React, { useEffect, useState } from 'react';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
+import ReactRouterDOM from 'react-router-dom';
+const { Link } = ReactRouterDOM;
 import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
+import Accordion from '@material-ui/core/Accordion';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Box from '@material-ui/core/Box';
+
 import AmpBarComp from '../components/AmpBarComp';
-import { Container } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
     width: '100%',
-    background: "gold",
   },
-  details: {
-    display: 'flex',
-    flexDirection: 'column',
+  heading: {
+    fontSize: theme.typography.pxToRem(20),
+    fontWeight: theme.typography.fontWeightRegular,
   },
-  content: {
-    flex: '1 0 auto',
-  },
-  myh1: {
-    textAlign: 'center',
-  },
-  mycard: {
-    width: "100%",
-    textDecoration: 'none',
-  },
-  a: {
-    underline: "none",
-  },
-  myul: {
-    display: "none"
+  acord: {
+    backgroundColor: 'gold',
   }
 }));
 
-export default function ArtistCard() {
+export default function Artists() {
   const classes = useStyles();
-  const [data, setData] = useState([])
 
+  const [data, setData] = useState([])
   useEffect(() => {
     async function fetchArtists() {
       const response = await fetch(
-        "http://192.168.0.91:9090/InitArtistInfo"
+        "http://192.168.0.91:9090/InitArtistInfo2"
       );
       const fetchArtistz = await response.json(response);
       setData(fetchArtistz);
@@ -51,41 +39,53 @@ export default function ArtistCard() {
     fetchArtists();
   }, []);
 
-  const [showlist1, setShowList1] = useState(false);
+  console.log(data[0])
 
-  return ( 
-    <div>
+  var store = require('store')
+  function albumIdToLocalStorage(albid, albname) {
+    console.log(albid)
+    store.set('albumID', { albumID:albid })
+    store.set('albname', { albname:albname })
+  };
+  return (
+    
+    
+
+    <div className={classes.root}>
+       
       <AmpBarComp />
-      <h1 className={classes.myh1}>Artist Page</h1>
-      <List >
-        {data.map((item) =>
-        <div key={"divlistitem" + item.artistID}>
-          <ListItem onClick={() => setShowList1(true)}  key={item.artistID}>
-              <Card className={classes.root}>
-                <div className={classes.details}>
-                  <CardContent className={classes.content}>
-                    <Typography component="h5" variant="h5">
-                      {item.artist} 
-                    </Typography>
-                    <Typography variant="subtitle1" color="textSecondary">
-                      {item.albcount} albums
-                    </Typography>
-                  </CardContent>
-                </div>
-              </Card>
-            <Container style={{ display: showlist1 ? "block" : "none" }}>
-              <div>
-                <ul>
-                  <li key="0" onClick={() => setShowList1(false)}>fuck one</li>
-                  <li key="1" onClick={() => setShowList1(false)}>fuck two</li>
-                  <li key="2" onClick={() => setShowList1(false)}>fuck three</li>
-                </ul>
-              </div>
-            </Container> 
-          </ListItem>
-        </div>
-        )}
-      </List>
+
+      {data.map((item) =>
+      <Accordion className={classes.acord} key={item.ArtistID}>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel2a-content"
+          id="panel2a-header"
+        >
+          <Box flexDirection="column">
+            <Typography className={classes.heading} component="h5" variant="h5">
+              {item.Artist}
+            </Typography>
+            <Typography className={classes.heading}>
+              {item.Albums.length} albums
+            </Typography>
+          </Box>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Box flexDirection="column">
+            {item.Albums.map((itemitem) =>
+              <Typography style={{color: "green"}}
+                          key={itemitem.fileID}
+                          component="h6" variant="h6"
+                          onClick={(() => albumIdToLocalStorage(itemitem.albumID, itemitem.album))}
+              >
+                <Link to="/SongsForAlbum">{itemitem.album}</Link>
+              </Typography>
+            )}
+          </Box>
+        </AccordionDetails>
+      </Accordion>
+      )}
     </div>
   );
 }

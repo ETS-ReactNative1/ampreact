@@ -87,7 +87,7 @@ export default function AmpBarComp() {
         </ListItem>
         <ListItem>
           <ListItemIcon><InboxIcon /></ListItemIcon>
-          <Link to="/Artist2">
+          <Link to="/Artists">
             <ListItemText primary={"Artists"} />
           </Link>
         </ListItem>
@@ -114,13 +114,9 @@ export default function AmpBarComp() {
         </ListItem>
         <ListItem>
           <ListItemIcon><MusicNoteIcon /></ListItemIcon>
-            
-
             <Link to="/Player" >
-              
               <ListItemText primary={"Player"} />
             </Link>
-          
         </ListItem>
       </List>
     </div>
@@ -128,18 +124,6 @@ export default function AmpBarComp() {
 
   return (
     <div className={classes.root}>
-      {/* <div>
-        
-        <Route path='/' component={Home} />
-        <Route path='/Artists' component={Artists} />
-        <Route path='/Albums' component={Albums} />
-        <Route path='/Songs' component={Songs} />
-        <Route path='/Playlists' component={Playlists} />
-        <Route path='/AddPlaylists' component={AddPlaylists} />
-        <Route path='/Player' component={Player} />
-        <Route path='/ArtistAlbums' component={ArtistAlbums} />
-        <Route path='/AlbumsSongs' component={AlbumSongs} />
-      </div> */}
       <AppBar position="static" color="transparent">
         <Toolbar >
           <IconButton onClick={toggleDrawer('left', true)} edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
@@ -156,22 +140,9 @@ export default function AmpBarComp() {
           <Button color="inherit">Login</Button>
         </Toolbar>
       </AppBar>
-
-      
       <audio className={"Audio1"} controls={true} style={{margin: "10px"}}>
         <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></source>
       </audio>
-      
-
-
-
     </div>
   );
 }
-
-// ReactDOM.render((
-//   <BrowserRouter>
-//     <IndexPage />
-//   </BrowserRouter>
-//   ), document.getElementById('root')
-// );

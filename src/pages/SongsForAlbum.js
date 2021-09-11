@@ -26,14 +26,6 @@ const useStyles = makeStyles((theme) => ({
   h1: {
     textAlign: "center",
   },
-  // playbtn: {
-  //   color: 'gold',
-  //   fontSize: 80,
-  // },
-  // pausebtn: {
-  //   color: "gold",
-  //   fontSize: 70,
-  // },
   fuckme: {
     marginTop: "auto",
     marginBottom: "auto",
@@ -46,15 +38,19 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function AlbumsSongs() {
+export default function SongsForAlbum() {
   const classes = useStyles();
   var store = require('store')
+  var albumID = store.get('albumID')
+  var albname = store.get('albname')
   const [data, setData] = useState([])
 
   useEffect(() => {
     async function fetchSongs() {
+      console.log(albumID);
+      var ALBURL = `http://192.168.0.91:9090/SongsForAlbum?selected=` + albumID['albumID'];
       const response = await fetch(
-        "http://192.168.0.91:9090/InitialSongInfo"
+        ALBURL
       );
       const fetchSongz = await response.json(response);
       setData(fetchSongz);
@@ -62,52 +58,66 @@ export default function AlbumsSongs() {
     fetchSongs();
   }, []);
 
-  console.log(data);
-
-  function songIdToLocalStorage(songid) {
+  function songIdToLocalStorage(songid, art, alb, title, arthttp, songhttp) {
     console.log(songid)
     store.set('songID', { songID:songid })
+    store.set('currentArtist', { currentArtist:art })
+    store.set('currentAlbum', { currentAlbum:alb })
+    store.set('currentSong', { currentSong:title })
+    store.set('currentArtHTTP', { currentArtHTTP:arthttp })
+    store.set('currentSongHTTP', { currentSongHTTP:songhttp })
   };
-
-  // const [showIcon, setShowIcon] = useState(true)
   
-  function playAudio() {
+  function playAudio(songid, art, alb, title, arthttp, songhttp) {
     console.log("Audio1")
+    document.getElementById("Audio2").setAttribute('src', songhttp);
     const audioEl = document.getElementsByClassName("Audio2")[0]
     audioEl.play()
-    // setShowIcon(false)
   }
 
   function stopAudio() {
     const audioEl = document.getElementsByClassName("Audio2")[0]
     audioEl.pause()
-    // setShowIcon(true)
   }
-
-
-
 
   return ( 
   <div>
     <AmpBarComp />
-    <h1 className={classes.h1}>AlbumSongs Page</h1>
+    <h1 className={classes.h1}>{albname['albname']}</h1>
     <List>
       {data.map(item =>
       <div key={item.fileID}>
         <ListItem >
-          <Card className={classes.root} onClick={() => songIdToLocalStorage(item.fileID)}>
+          <Card className={classes.root} 
+              onClick={() => songIdToLocalStorage(item.fileID,
+                                                  item.artist,
+                                                  item.album,
+                                                  item.title,
+                                                  item.picHttpAddr,
+                                                  item.httpaddr,
+
+            )}>
             <div className={classes.details}>
               <CardContent className={classes.content}>
                 <Typography component="h5" variant="h5">
                   {item.title}
                 </Typography>
                 <Typography variant="subtitle1" color="textSecondary">
+                  {item.album}
+                </Typography>
+                <Typography variant="subtitle2" color="textSecondary">
                   {item.artist}
                 </Typography>
               </CardContent>
             </div>
             <div className={classes.fuckme}>
-              <PlayArrowIcon id={item.fileID} className={classes.fuck} onClick={() => playAudio()}/>
+              <PlayArrowIcon id={item.fileID} className={classes.fuck} onClick={() => playAudio(item.fileID,
+                                                                                                item.artist,
+                                                                                                item.album,
+                                                                                                item.title,
+                                                                                                item.picHttpAddr,
+                                                                                                item.httpaddr,
+              )}/>
               <PauseIcon id={item.fileID} className={classes.fuck} onClick={() => stopAudio()}/>
             </div>
           </Card>

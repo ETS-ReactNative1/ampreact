@@ -50,18 +50,15 @@ export default function AlbumCard() {
     }
     fetchAlbums();
   }, []);
-
-  console.log(data);
-
+  
   function albumIdToLocalStorage(albid) {
-    console.log(albid)
     store.set('albumID', { albumID:albid })
   };
 
   return (
     <div >
       <AmpBarComp />
-      <h1 className={classes.h1}>Albums Page</h1>
+      <h1 className={classes.h1}>Albums</h1>
       {data.map(item =>
         <List spacing={3} key={item.AlbumID}>
             <ListItem onClick={() => albumIdToLocalStorage(item.AlbumID)}>
