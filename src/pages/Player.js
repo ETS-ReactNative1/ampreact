@@ -6,7 +6,7 @@ import PauseIcon from '@material-ui/icons/Pause';
 import SkipNextIcon from '@material-ui/icons/SkipNext';
 import { ButtonGroup } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
-
+import AmpBarComp from '../components/AmpBarComp';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -42,6 +42,7 @@ export default function PlayerCard() {
 
   return ( 
     <div  > 
+      <AmpBarComp />
       <h1 className={classes.h1}>Player Page</h1>
       <img src={StockImg} alt="logo" className={classes.root}/>
       <div>

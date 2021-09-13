@@ -13,12 +13,14 @@ import AlbumsSongs from './pages/SongsForAlbum';
 import SongsForAlbum from './pages/SongsForAlbum';
 import './index.css';
 import Artists from './pages/Artists';
+// import BackGround from "./pages/images/bg.png";
 
 export default function IndexPage() {
 
   return (
-    <div>
-      <audio id="Audio2" className={"Audio2"} controls={true}>
+    <div >
+      {/* <audio id="Audio2" className={"Audio2"} controls={true}> */}
+      <audio id="Audio2" className={"Audio2"}>
         <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></source>
       </audio> 
       <Route exact path='/' component={Home} />

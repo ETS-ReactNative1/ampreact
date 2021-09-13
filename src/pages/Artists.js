@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import ReactRouterDOM from 'react-router-dom';
-const { Link } = ReactRouterDOM;
+// import ReactRouterDOM from 'react-router-dom';
+// const { Link } = ReactRouterDOM;
 import { makeStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
@@ -10,6 +10,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Box from '@material-ui/core/Box';
 
 import AmpBarComp from '../components/AmpBarComp';
+// import BottomPlayerControls from '../components/BottomPlayerControls';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,6 +22,10 @@ const useStyles = makeStyles((theme) => ({
   },
   acord: {
     backgroundColor: 'gold',
+  },
+  link: {
+    textDecoration: "none",
+    color: "green",
   }
 }));
 
@@ -39,14 +44,13 @@ export default function Artists() {
     fetchArtists();
   }, []);
 
-  console.log(data[0])
-
   var store = require('store')
   function albumIdToLocalStorage(albid, albname) {
-    console.log(albid)
     store.set('albumID', { albumID:albid })
     store.set('albname', { albname:albname })
   };
+
+  
   return (
     
     
@@ -54,6 +58,8 @@ export default function Artists() {
     <div className={classes.root}>
        
       <AmpBarComp />
+
+      {/* <BottomPlayerControls /> */}
 
       {data.map((item) =>
       <Accordion className={classes.acord} key={item.ArtistID}>
@@ -79,13 +85,15 @@ export default function Artists() {
                           component="h6" variant="h6"
                           onClick={(() => albumIdToLocalStorage(itemitem.albumID, itemitem.album))}
               >
-                <Link to="/SongsForAlbum">{itemitem.album}</Link>
+              <a href="/SongsForAlbum" className={classes.link}>{itemitem.album}</a>
+              {/* <Link to="/SongsForAlbum">{itemitem.album}</Link> */}
               </Typography>
             )}
           </Box>
         </AccordionDetails>
       </Accordion>
       )}
+      
     </div>
   );
 }

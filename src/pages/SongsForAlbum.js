@@ -6,10 +6,10 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 
 import { makeStyles } from '@material-ui/core/styles';
-import PlayArrowIcon from '@material-ui/icons/PlayArrow';
-import PauseIcon from '@material-ui/icons/Pause';
+// import PlayArrowIcon from '@material-ui/icons/PlayArrow';
+// import PauseIcon from '@material-ui/icons/Pause';
 import AmpBarComp from '../components/AmpBarComp';
-
+import BottomPlayerControls from '../components/BottomPlayerControls';
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -59,30 +59,30 @@ export default function SongsForAlbum() {
   }, []);
 
   function songIdToLocalStorage(songid, art, alb, title, arthttp, songhttp) {
-    console.log(songid)
     store.set('songID', { songID:songid })
     store.set('currentArtist', { currentArtist:art })
     store.set('currentAlbum', { currentAlbum:alb })
     store.set('currentSong', { currentSong:title })
     store.set('currentArtHTTP', { currentArtHTTP:arthttp })
     store.set('currentSongHTTP', { currentSongHTTP:songhttp })
+    document.getElementById("Audio2").setAttribute('src', songhttp);
+    // changeIcon()
   };
   
-  function playAudio(songid, art, alb, title, arthttp, songhttp) {
-    console.log("Audio1")
-    document.getElementById("Audio2").setAttribute('src', songhttp);
-    const audioEl = document.getElementsByClassName("Audio2")[0]
-    audioEl.play()
-  }
+  // function changeIcon() {
+  //   document.getElementById("PlayBtn").setAttribute('display', 'inline-block');
+  //   document.getElementById("PauseBtn").setAttribute('display', 'none');
+  // // }
 
-  function stopAudio() {
-    const audioEl = document.getElementsByClassName("Audio2")[0]
-    audioEl.pause()
-  }
+  // function stopAudio() {
+  //   const audioEl = document.getElementsByClassName("Audio2")[0]
+  //   audioEl.pause()
+  // }
 
   return ( 
   <div>
     <AmpBarComp />
+    <BottomPlayerControls />
     <h1 className={classes.h1}>{albname['albname']}</h1>
     <List>
       {data.map(item =>
@@ -110,7 +110,7 @@ export default function SongsForAlbum() {
                 </Typography>
               </CardContent>
             </div>
-            <div className={classes.fuckme}>
+            {/* <div className={classes.fuckme}>
               <PlayArrowIcon id={item.fileID} className={classes.fuck} onClick={() => playAudio(item.fileID,
                                                                                                 item.artist,
                                                                                                 item.album,
@@ -119,7 +119,7 @@ export default function SongsForAlbum() {
                                                                                                 item.httpaddr,
               )}/>
               <PauseIcon id={item.fileID} className={classes.fuck} onClick={() => stopAudio()}/>
-            </div>
+            </div> */}
           </Card>
             
 

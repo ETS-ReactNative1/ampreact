@@ -31,7 +31,7 @@ import AssignmentIcon from '@material-ui/icons/Assignment';
 import AlbumIcon from '@material-ui/icons/Album';
 import MusicNoteIcon from '@material-ui/icons/MusicNote';
 import HomeIcon from '@material-ui/icons/Home';
-// import ArtistAlbums from '../pages/ArtistAlbums';
+// import BottomPlayerControls from '../components/BottomPlayerControls';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -140,9 +140,10 @@ export default function AmpBarComp() {
           <Button color="inherit">Login</Button>
         </Toolbar>
       </AppBar>
-      <audio className={"Audio1"} controls={true} style={{margin: "10px"}}>
+      {/* <BottomPlayerControls /> */}
+      {/* <audio className={"Audio1"} controls={true} style={{margin: "10px"}}>
         <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></source>
-      </audio>
+      </audio> */}
     </div>
   );
 }

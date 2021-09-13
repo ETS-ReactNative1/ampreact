@@ -32,6 +32,9 @@ const useStyles = makeStyles((theme) => ({
   },
   h1: {
     textAlign: "center",
+  },
+  fuckyou: {
+    textDecoration: "none",
   }
 }));
 
@@ -50,9 +53,13 @@ export default function AlbumCard() {
     }
     fetchAlbums();
   }, []);
+
+  console.log(data)
   
-  function albumIdToLocalStorage(albid) {
+  // var store = require('store')
+  function songIdToLocalStorage(albid, albname) {
     store.set('albumID', { albumID:albid })
+    store.set('albname', { albname:albname })
   };
 
   return (
@@ -60,27 +67,34 @@ export default function AlbumCard() {
       <AmpBarComp />
       <h1 className={classes.h1}>Albums</h1>
       {data.map(item =>
-        <List spacing={3} key={item.AlbumID}>
-            <ListItem onClick={() => albumIdToLocalStorage(item.AlbumID)}>
-              <Card className={classes.root}>
-                <CardMedia
-                  className={classes.cover}
-                  image={item.PicPath}
-                  title="Live from space album cover"
-                />
-                <div className={classes.details}>
-                  <CardContent className={classes.content}>
-                    <Typography component="h5" variant="h5">
-                      {item.Album}
-                    </Typography>
-                    <Typography variant="subtitle1" color="textSecondary">
-                      Mac Miller
-                    </Typography>
-                  </CardContent>
-                </div>
-              </Card>
-            </ListItem>
-        </List>
+      <div>
+        {/* <Link underline="none" to="/SongsForAlbum"> */}
+          <a href="/Songs" className={classes.fuckyou} >
+          <List spacing={3} key={item.albumID}>
+              <ListItem onClick={() => songIdToLocalStorage(item.albumID)} key={item.albumID}>
+                <Card className={classes.root} key={item.albumID}>
+                  <CardMedia
+                    key={item.albumID}
+                    className={classes.cover}
+                    image={item.picHttpAddr}
+                    title="Live from space album cover"
+                  />
+                  <div className={classes.details}>
+                    <CardContent className={classes.content} >
+                      <Typography component="h5" variant="h5" >
+                        {item.album}
+                      </Typography>
+                      <Typography variant="subtitle1" color="textSecondary" >
+                        {item.artist}
+                      </Typography>
+                    </CardContent>
+                  </div>
+                </Card>
+              </ListItem>
+          </List>
+          </a>
+        {/* </Link> */}
+      </div>
       )}
     </div>
   );
