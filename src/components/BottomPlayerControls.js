@@ -15,7 +15,7 @@ import SkipNextIcon from '@material-ui/icons/SkipNext';
 const useStyles = makeStyles({
   root: {
     width: '100%',
-    color: "gold",
+    // color: "gold",
     backgroundColor: "grey",
     marginTop: '1em',
     marginBottom: '1em',

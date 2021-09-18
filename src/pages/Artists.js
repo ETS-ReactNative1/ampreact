@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Box from '@material-ui/core/Box';
 
-import AmpBarComp from '../components/AmpBarComp';
+// import AmpBarComp from '../components/AmpBarComp';
 // import BottomPlayerControls from '../components/BottomPlayerControls';
 
 const useStyles = makeStyles((theme) => ({
@@ -57,7 +57,7 @@ export default function Artists() {
 
     <div className={classes.root}>
        
-      <AmpBarComp />
+      {/* <AmpBarComp /> */}
 
       {/* <BottomPlayerControls /> */}
 

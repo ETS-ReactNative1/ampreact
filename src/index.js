@@ -14,15 +14,26 @@ import SongsForAlbum from './pages/SongsForAlbum';
 import './index.css';
 import Artists from './pages/Artists';
 // import BackGround from "./pages/images/bg.png";
-
-export default function IndexPage() {
+import BottomPlayerControls from './components/BottomPlayerControls';
+import AmpBarComp from './components/AmpBarComp';
+import ReactAudioPlayer from 'react-audio-player';
+export default function IndexPage({props}) {
 
   return (
     <div >
-      {/* <audio id="Audio2" className={"Audio2"} controls={true}> */}
-      <audio id="Audio2" className={"Audio2"}>
+      <ReactAudioPlayer
+        src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+        controls
+        id={"Audio2"}
+        className={"Audio2"}
+      />
+
+      <BottomPlayerControls />
+      {/* <audio id="Audio2" className={"Audio2"}> */}
+      {/* <audio id="Audio2" className={"Audio2"} controls={true}>
+      
         <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></source>
-      </audio> 
+      </audio>  */}
       <Route exact path='/' component={Home} />
       <Route path='/Artists' component={Artists} />
       <Route path='/Albums' component={Albums} />
@@ -32,13 +43,16 @@ export default function IndexPage() {
       <Route path='/Player' component={Player} />
       <Route path='/SongsForAlbum' component={SongsForAlbum} />
       <Route path='/Z' component={AlbumsSongs} />
+      
     </div>
   );
 }
 
 ReactDOM.render((
   <BrowserRouter>
+    <AmpBarComp />
     <IndexPage />
+    
   </BrowserRouter>
   ), document.getElementById('root')
 );

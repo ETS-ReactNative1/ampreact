@@ -8,8 +8,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 // import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 // import PauseIcon from '@material-ui/icons/Pause';
-import AmpBarComp from '../components/AmpBarComp';
-import BottomPlayerControls from '../components/BottomPlayerControls';
+// import AmpBarComp from '../components/AmpBarComp';
+// import BottomPlayerControls from '../components/BottomPlayerControls';
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -81,8 +81,8 @@ export default function SongsForAlbum() {
 
   return ( 
   <div>
-    <AmpBarComp />
-    <BottomPlayerControls />
+    {/* <AmpBarComp /> */}
+    {/* <BottomPlayerControls /> */}
     <h1 className={classes.h1}>{albname['albname']}</h1>
     <List>
       {data.map(item =>

@@ -6,10 +6,10 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 
 import { makeStyles } from '@material-ui/core/styles';
-import PlayArrowIcon from '@material-ui/icons/PlayArrow';
-import PauseIcon from '@material-ui/icons/Pause';
-import AddIcon from '@material-ui/icons/Add';
-import AmpBarComp from '../components/AmpBarComp';
+// import PlayArrowIcon from '@material-ui/icons/PlayArrow';
+// import PauseIcon from '@material-ui/icons/Pause';
+// import AddIcon from '@material-ui/icons/Add';
+// import AmpBarComp from '../components/AmpBarComp';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -49,12 +49,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SongCard() {
   const classes = useStyles();
-
-  var store = require('store')
   const [data, setData] = useState([])
- 
-
-
   useEffect(() => {
     async function fetchSongs() {
       const response = await fetch(
@@ -66,6 +61,8 @@ export default function SongCard() {
     fetchSongs();
   }, []);
 
+  var store = require('store');
+  
   function songIdToLocalStorage(songid) {
     console.log(songid)
     store.set('songID', { songID:songid })
@@ -86,22 +83,22 @@ export default function SongCard() {
   //   setShowIcon(true)
   // }
 
-  function playAudio() {
-    const audioEl = document.getElementsByClassName("Audio2")[0]
-    audioEl.play()
-    setShowIcon(false)
-  }
+  // function playAudio() {
+  //   const audioEl = document.getElementsByClassName("Audio2")[0]
+  //   audioEl.play()
+  //   setShowIcon(false)
+  // }
 
-  function stopAudio() {
-    const audioEl = document.getElementsByClassName("Audio2")[0]
-    audioEl.pause()
-    setShowIcon(true)
-  }
+  // function stopAudio() {
+  //   const audioEl = document.getElementsByClassName("Audio2")[0]
+  //   audioEl.pause()
+  //   setShowIcon(true)
+  // }
 
 
   return ( 
     <div>
-      <AmpBarComp />
+      {/* <AmpBarComp /> */}
       <h1 className={classes.h1}>Songs Page</h1>
       <List>
         {data.map(item =>
@@ -127,11 +124,11 @@ export default function SongCard() {
 {/* <PlayArrowIcon style={{ display: showIcon ? "block" : "none" }} key={item.fileID} className={classes.fuck} onClick={() => playAudio(item.fileID)}/> 
 <PauseIcon style={{ display: showIcon ? "none" : "block" }} key={item.fileID} className={classes.fuck} onClick={() => stopAudio(item.fileID)}/> */}
 
-              <div key={item.fileID} className={classes.fuckme}>
+              {/* <div key={item.fileID} className={classes.fuckme}>
                 { showIcon ? <PlayArrowIcon key={item.fileID} className={classes.fuck} onClick={() => playAudio(item.fileID)}/> 
                 : <PauseIcon key={item.fileID} className={classes.fuck} onClick={() => stopAudio(item.fileID)}/> }
                 <AddIcon className={classes.fuck}/>
-              </div>
+              </div> */}
             </Card>
             <audio className={item.fileID} key={item.fileID}>
               <source src={item.httpaddr}></source>

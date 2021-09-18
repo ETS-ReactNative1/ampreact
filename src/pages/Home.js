@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import AmpBarComp from '../components/AmpBarComp';
+// import AmpBarComp from '../components/AmpBarComp';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,7 +33,7 @@ export default function Home() {
 
   return (
   <div>
-    <AmpBarComp />
+    {/* <AmpBarComp /> */}
     <div className={classes.Home}>
       
       <div className={classes.root}>
