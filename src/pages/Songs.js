@@ -4,11 +4,11 @@ import ListItem from '@material-ui/core/ListItem';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-
+import Tooltip from '@material-ui/core/Tooltip';
 import { makeStyles } from '@material-ui/core/styles';
 // import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 // import PauseIcon from '@material-ui/icons/Pause';
-// import AddIcon from '@material-ui/icons/Add';
+import AddIcon from '@material-ui/icons/Add';
 // import AmpBarComp from '../components/AmpBarComp';
 
 const useStyles = makeStyles((theme) => ({
@@ -66,45 +66,23 @@ export default function SongCard() {
   function songIdToLocalStorage(songid) {
     console.log(songid)
     store.set('songID', { songID:songid })
+    playAudio(songid)
   };
-
-  const [showIcon, setShowIcon] = useState(true)
   
-  // function playAudio(elementID) {
-  //   console.log(elementID)
-  //   const audioEl = document.getElementsByClassName(elementID)[0]
-  //   audioEl.play()
-  //   setShowIcon(false)
-  // }
-
-  // function stopAudio(elementID) {
-  //   const audioEl = document.getElementsByClassName(elementID)[0]
-  //   audioEl.pause()
-  //   setShowIcon(true)
-  // }
-
-  // function playAudio() {
-  //   const audioEl = document.getElementsByClassName("Audio2")[0]
-  //   audioEl.play()
-  //   setShowIcon(false)
-  // }
-
-  // function stopAudio() {
-  //   const audioEl = document.getElementsByClassName("Audio2")[0]
-  //   audioEl.pause()
-  //   setShowIcon(true)
-  // }
-
+  function playAudio(sid) {
+    const audioEl = document.getElementsByClassName('Audio2')[0]
+    audioEl.setAttribute('src', sid);
+    audioEl.play()
+  }
 
   return ( 
     <div>
-      {/* <AmpBarComp /> */}
-      <h1 className={classes.h1}>Songs Page</h1>
+      <h1 className={classes.h1}>Songs</h1>
       <List>
         {data.map(item =>
         <div key={item.fileID}>
           <ListItem >
-            <Card className={classes.root} onClick={() => songIdToLocalStorage(item.fileID)}>
+            <Card className={classes.root} onClick={() => songIdToLocalStorage(item.httpaddr)}>
               <div className={classes.details}>
                 <CardContent className={classes.content}>
                   <Typography component="h6" variant="h6">
@@ -116,23 +94,12 @@ export default function SongCard() {
                   
                 </CardContent>
               </div>
-              {/* <ButtonGroup>
-                { showIcon ? <PlayArrowIcon id={item.fileID} className={classes.fuck} onClick={() => playAudio(item.fileID)}/> 
-                : <PauseIcon id={item.fileID} className={classes.fuck} onClick={() => stopAudio(item.fileID)}/> }
-              </ButtonGroup> */}
-
-{/* <PlayArrowIcon style={{ display: showIcon ? "block" : "none" }} key={item.fileID} className={classes.fuck} onClick={() => playAudio(item.fileID)}/> 
-<PauseIcon style={{ display: showIcon ? "none" : "block" }} key={item.fileID} className={classes.fuck} onClick={() => stopAudio(item.fileID)}/> */}
-
-              {/* <div key={item.fileID} className={classes.fuckme}>
-                { showIcon ? <PlayArrowIcon key={item.fileID} className={classes.fuck} onClick={() => playAudio(item.fileID)}/> 
-                : <PauseIcon key={item.fileID} className={classes.fuck} onClick={() => stopAudio(item.fileID)}/> }
-                <AddIcon className={classes.fuck}/>
-              </div> */}
+              <div key={item.fileID} className={classes.fuckme}>
+                <Tooltip title="Add to Playlist">
+                  <AddIcon className={classes.fuck}/>
+                </Tooltip>
+              </div>
             </Card>
-            <audio className={item.fileID} key={item.fileID}>
-              <source src={item.httpaddr}></source>
-            </audio>
           </ListItem>
         </div>
         )}

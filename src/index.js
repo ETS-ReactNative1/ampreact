@@ -7,7 +7,7 @@ import Home from './pages/Home.js';
 import Albums from './pages/Albums.js';
 import Songs from './pages/Songs.js';
 import Playlists from './pages/Playlists';
-import AddPlaylists from './pages/AddPlaylists';
+import AddPlaylist from './pages/AddPlaylist';
 import Player from './pages/Player';
 import AlbumsSongs from './pages/SongsForAlbum';
 import SongsForAlbum from './pages/SongsForAlbum';
@@ -17,6 +17,13 @@ import Artists from './pages/Artists';
 import BottomPlayerControls from './components/BottomPlayerControls';
 import AmpBarComp from './components/AmpBarComp';
 import ReactAudioPlayer from 'react-audio-player';
+
+import AddRandomPlaylist from './pages/AddRandomPlaylist.js';
+
+
+
+
+
 export default function IndexPage({props}) {
 
   return (
@@ -39,7 +46,8 @@ export default function IndexPage({props}) {
       <Route path='/Albums' component={Albums} />
       <Route path='/Songs' component={Songs} />
       <Route path='/Playlists' component={Playlists} />
-      <Route path='/AddPlaylists' component={AddPlaylists} />
+      <Route path='/AddPlaylist' component={AddPlaylist} />
+      <Route path='/AddRandomPlaylist' component={AddRandomPlaylist} />
       <Route path='/Player' component={Player} />
       <Route path='/SongsForAlbum' component={SongsForAlbum} />
       <Route path='/Z' component={AlbumsSongs} />

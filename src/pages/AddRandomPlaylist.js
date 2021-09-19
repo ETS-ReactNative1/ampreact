@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function MultilineTextFields() {
+export default function AddRandomPlaylist() {
   const classes = useStyles();
   const [value, setValue] = React.useState('Controlled');
 
@@ -42,31 +42,6 @@ export default function MultilineTextFields() {
 
   return (
     <div className={classes.Box1Div}>
-      <Box className={classes.Box1}>
-        <h2>Add Playlist</h2>
-        <form className={classes.root} noValidate autoComplete="off">
-          <div>
-            <TextField
-              id="Random-Name"
-              label="Playlist Name"
-              placeholder="Playlist Name"
-              multiline
-              variant="outlined"
-              onChange={handleChange}
-            />
-            <TextField
-              id="Random-Number"
-              label="Number Of Songs"
-              placeholder="Number Of Songs"
-              multiline
-              variant="outlined"
-              onChange={handleChange}
-            />
-          </div>
-          <Button className={classes.AddPlaylistButton}>Create</Button>
-        </form>
-      </Box>
-      
       <Box className={classes.Box1}>
         <h2>Add Random Playlist</h2>
         <form className={classes.root} noValidate autoComplete="off">

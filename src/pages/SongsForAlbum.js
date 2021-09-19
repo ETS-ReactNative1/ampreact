@@ -6,6 +6,8 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 
 import { makeStyles } from '@material-ui/core/styles';
+import AddIcon from '@material-ui/icons/Add'
+import Tooltip from '@material-ui/core/Tooltip';
 // import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 // import PauseIcon from '@material-ui/icons/Pause';
 // import AmpBarComp from '../components/AmpBarComp';
@@ -34,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
   },
   fuck: {
     fontSize: 55,
+    textOverflow: "…",
     
   }
 }));
@@ -68,71 +71,43 @@ export default function SongsForAlbum() {
     document.getElementById("Audio2").setAttribute('src', songhttp);
     // changeIcon()
   };
-  
-  // function changeIcon() {
-  //   document.getElementById("PlayBtn").setAttribute('display', 'inline-block');
-  //   document.getElementById("PauseBtn").setAttribute('display', 'none');
-  // // }
-
-  // function stopAudio() {
-  //   const audioEl = document.getElementsByClassName("Audio2")[0]
-  //   audioEl.pause()
-  // }
 
   return ( 
   <div>
-    {/* <AmpBarComp /> */}
-    {/* <BottomPlayerControls /> */}
     <h1 className={classes.h1}>{albname['albname']}</h1>
     <List>
       {data.map(item =>
       <div key={item.fileID}>
         <ListItem >
-          <Card className={classes.root} 
-              onClick={() => songIdToLocalStorage(item.fileID,
-                                                  item.artist,
-                                                  item.album,
-                                                  item.title,
-                                                  item.picHttpAddr,
-                                                  item.httpaddr,
+            <Card className={classes.root} 
+                onClick={() => songIdToLocalStorage(item.fileID,
+                                                    item.artist,
+                                                    item.album,
+                                                    item.title,
+                                                    item.picHttpAddr,
+                                                    item.httpaddr,
 
-            )}>
-            <div className={classes.details}>
-              <CardContent className={classes.content}>
-                <Typography component="h5" variant="h5">
-                  {item.title}
-                </Typography>
-                <Typography variant="subtitle1" color="textSecondary">
-                  {item.album}
-                </Typography>
-                <Typography variant="subtitle2" color="textSecondary">
-                  {item.artist}
-                </Typography>
-              </CardContent>
-            </div>
-            {/* <div className={classes.fuckme}>
-              <PlayArrowIcon id={item.fileID} className={classes.fuck} onClick={() => playAudio(item.fileID,
-                                                                                                item.artist,
-                                                                                                item.album,
-                                                                                                item.title,
-                                                                                                item.picHttpAddr,
-                                                                                                item.httpaddr,
-              )}/>
-              <PauseIcon id={item.fileID} className={classes.fuck} onClick={() => stopAudio()}/>
-            </div> */}
-          </Card>
-            
-
-          {/* { showIcon ? <PlayArrowIcon id={item.fileID} className={classes.playbtn} onClick={() => playAudio(item.fileID)}/> 
-          : <PauseIcon id={item.fileID} className={classes.pausebtn} onClick={() => stopAudio(item.fileID)}/> } */}
-          
-          {/* <audio className={item.fileID}>
-            <source src={item.httpaddr}></source>
-          </audio>     */}
-            
-          
+              )}>
+              <div className={classes.details}>
+                <CardContent className={classes.content}>
+                  <Typography component="h5" variant="h5">
+                    {item.title}
+                  </Typography>
+                  <Typography variant="subtitle1" color="textSecondary">
+                    {item.album}
+                  </Typography>
+                  <Typography variant="subtitle2" color="textSecondary">
+                    {item.artist}
+                  </Typography>
+                </CardContent>
+              </div>
+              <div className={classes.fuckme}>
+                <Tooltip title="Add to Playlist">
+                  <AddIcon className={classes.fuck}/>
+                </Tooltip>
+              </div>
+            </Card>
         </ListItem>
-        
       </div>
       )}
     </List>
