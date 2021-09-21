@@ -22,6 +22,7 @@ import AddRandomPlaylist from './pages/AddRandomPlaylist.js';
 
 
 
+// const queryClient = new QueryClient()
 
 
 export default function IndexPage({props}) {
@@ -35,7 +36,7 @@ export default function IndexPage({props}) {
         className={"Audio2"}
       />
 
-      <BottomPlayerControls />
+      {/* <BottomPlayerControls /> */}
       {/* <audio id="Audio2" className={"Audio2"}> */}
       {/* <audio id="Audio2" className={"Audio2"} controls={true}>
       
@@ -57,10 +58,12 @@ export default function IndexPage({props}) {
 }
 
 ReactDOM.render((
-  <BrowserRouter>
-    <AmpBarComp />
-    <IndexPage />
-    
-  </BrowserRouter>
+  
+    <BrowserRouter>
+      
+      <AmpBarComp />
+      <IndexPage />
+    </BrowserRouter>
+  
   ), document.getElementById('root')
 );

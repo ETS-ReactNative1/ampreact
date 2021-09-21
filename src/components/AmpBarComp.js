@@ -32,7 +32,7 @@ import AlbumIcon from '@material-ui/icons/Album';
 import MusicNoteIcon from '@material-ui/icons/MusicNote';
 import HomeIcon from '@material-ui/icons/Home';
 // import BottomPlayerControls from '../components/BottomPlayerControls';
-
+import BottomPlayerControls from './BottomPlayerControls';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -78,7 +78,7 @@ export default function AmpBarComp() {
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-      <List>
+      <List style={{backgroundColor: "grey"}}>
         <ListItem>
           <ListItemIcon><HomeIcon /></ListItemIcon>
           <Link to="/">
@@ -105,7 +105,7 @@ export default function AmpBarComp() {
         </ListItem>
       </List>
       <Divider />
-      <List>  
+      <List style={{backgroundColor: "grey"}}>  
         <ListItem>
           <ListItemIcon><AssignmentIcon /></ListItemIcon>
           <Link to="/Playlists">
@@ -125,6 +125,7 @@ export default function AmpBarComp() {
   return (
     <div className={classes.root}>
       <AppBar position="static" color="transparent">
+      
         <Toolbar >
           <IconButton onClick={toggleDrawer('left', true)} edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
@@ -137,7 +138,10 @@ export default function AmpBarComp() {
           <Typography variant="h6" className={classes.title}>
             AmpGo
           </Typography>
-          <Button color="inherit">Login</Button>
+          {/* <Button color="inherit">-</Button>
+          <Button color="inherit">Play</Button>
+          <Button color="inherit">+</Button> */}
+          <BottomPlayerControls />
         </Toolbar>
       </AppBar>
       {/* <BottomPlayerControls /> */}

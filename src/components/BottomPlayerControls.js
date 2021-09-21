@@ -16,12 +16,12 @@ const useStyles = makeStyles({
   root: {
     width: '100%',
     // color: "gold",
-    backgroundColor: "grey",
+    backgroundColor: "black",
     marginTop: '1em',
     marginBottom: '1em',
   },
   BotNavIcon: { 
-    fontSize: 55,
+    fontSize: 45,
   }
 });
 
