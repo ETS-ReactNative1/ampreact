@@ -4,14 +4,11 @@ import ListItem from '@material-ui/core/ListItem';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-
 import { makeStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add'
 import Tooltip from '@material-ui/core/Tooltip';
-// import PlayArrowIcon from '@material-ui/icons/PlayArrow';
-// import PauseIcon from '@material-ui/icons/Pause';
-// import AmpBarComp from '../components/AmpBarComp';
-// import BottomPlayerControls from '../components/BottomPlayerControls';
+import IconButton from '@material-ui/core/IconButton';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -69,7 +66,6 @@ export default function SongsForAlbum() {
     store.set('currentArtHTTP', { currentArtHTTP:arthttp })
     store.set('currentSongHTTP', { currentSongHTTP:songhttp })
     document.getElementById("Audio2").setAttribute('src', songhttp);
-    // changeIcon()
   };
 
   return ( 
@@ -103,7 +99,9 @@ export default function SongsForAlbum() {
               </div>
               <div className={classes.fuckme}>
                 <Tooltip title="Add to Playlist">
-                  <AddIcon className={classes.fuck}/>
+                  <IconButton>
+                    <AddIcon className={classes.fuck}/>
+                  </IconButton>
                 </Tooltip>
               </div>
             </Card>

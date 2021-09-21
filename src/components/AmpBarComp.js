@@ -16,7 +16,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
+// import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Drawer from '@material-ui/core/Drawer';
@@ -31,8 +31,16 @@ import AssignmentIcon from '@material-ui/icons/Assignment';
 import AlbumIcon from '@material-ui/icons/Album';
 import MusicNoteIcon from '@material-ui/icons/MusicNote';
 import HomeIcon from '@material-ui/icons/Home';
-// import BottomPlayerControls from '../components/BottomPlayerControls';
-import BottomPlayerControls from './BottomPlayerControls';
+import BottomPlayerControls from '../components/BottomPlayerControls';
+// import BottomPlayerControls from './BottomPlayerControls';
+// import { ButtonGroup } from '@material-ui/core';
+import AddIcon from '@material-ui/icons/Add';
+import RemoveIcon from '@material-ui/icons/Remove';
+import PlayArrowIcon from '@material-ui/icons/PlayArrow';
+
+import ReactAudioPlayer from 'react-audio-player';
+
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -124,8 +132,13 @@ export default function AmpBarComp() {
 
   return (
     <div className={classes.root}>
+      <ReactAudioPlayer
+        src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+        controls
+        id={"Audio2"}
+        className={"Audio2"}
+      />
       <AppBar position="static" color="transparent">
-      
         <Toolbar >
           <IconButton onClick={toggleDrawer('left', true)} edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
@@ -138,16 +151,9 @@ export default function AmpBarComp() {
           <Typography variant="h6" className={classes.title}>
             AmpGo
           </Typography>
-          {/* <Button color="inherit">-</Button>
-          <Button color="inherit">Play</Button>
-          <Button color="inherit">+</Button> */}
           <BottomPlayerControls />
         </Toolbar>
       </AppBar>
-      {/* <BottomPlayerControls /> */}
-      {/* <audio className={"Audio1"} controls={true} style={{margin: "10px"}}>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></source>
-      </audio> */}
     </div>
   );
 }

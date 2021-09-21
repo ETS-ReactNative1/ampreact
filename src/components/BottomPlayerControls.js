@@ -1,16 +1,11 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-
 import Box from '@material-ui/core/Box';
-
-import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import PauseIcon from '@material-ui/icons/Pause';
-import SkipNextIcon from '@material-ui/icons/SkipNext';
-
-// import RestoreIcon from '@material-ui/icons/Restore';
-// import FavoriteIcon from '@material-ui/icons/Favorite';
-// import LocationOnIcon from '@material-ui/icons/LocationOn';
+import IconButton from '@material-ui/core/IconButton';
+import RemoveIcon from '@material-ui/icons/Remove';
+import AddIcon from '@material-ui/icons/Add';
 
 const useStyles = makeStyles({
   root: {
@@ -27,7 +22,6 @@ const useStyles = makeStyles({
 
 export default function SimpleBottomNavigation() {
   const classes = useStyles();
-//   const [value, setValue] = React.useState(0);
   const [showIcon, setShowIcon] = React.useState(true);
 
   function playSong() {
@@ -43,30 +37,21 @@ export default function SimpleBottomNavigation() {
     //   document.getElementById("Audio2").setAttribute('src', songhttp);
     const audioEl2 = document.getElementsByClassName("Audio2")[0]
     audioEl2.pause()
-
   }
 
   return (
-      <div>
-
-
+    <div>
       <Box className={classes.root} display="flex" flexDirection="row" justifyContent="center" alignItems="center">
-        
-        <SkipPreviousIcon className={classes.BotNavIcon} />
-
+        <IconButton color="inherit"><RemoveIcon color="inherit" style={{fontSize: 37}}/></IconButton>
         { 
             showIcon 
         ? 
-            <PlayArrowIcon id="PlayBtn" className={classes.BotNavIcon} onClick={() => playSong()} />
+            <IconButton color="inherit"><PlayArrowIcon color="inherit" style={{fontSize: 37}} onClick={() => playSong()} /></IconButton>
         :
-            <PauseIcon id="PauseBtn" className={classes.BotNavIcon} onClick={() => stopSong()} />
+            <IconButton color="inherit"><PauseIcon color="inherit" style={{fontSize: 37}} onClick={() => stopSong()} /></IconButton>
         }
-        
-        
-        <SkipNextIcon className={classes.BotNavIcon} />
+        <IconButton color="inherit" style={{fontSize: 37}}><AddIcon color="inherit"/></IconButton>
       </Box>
-
-
-     </div>
+    </div>
   );
 }

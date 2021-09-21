@@ -42,23 +42,6 @@ export default function PlaylistsCard() {
   }, []);
   console.log(data)
 
-  
-
-  // useEffect(() => {
-  //   async function fetchDeletePlaylist(delsongid) {
-  //     const response = await fetch(
-  //       `http://192.168.0.91:9090/DeletePlaylist?playlistid=${delsongid}`
-  //     );
-  //     const fetchPlaylistResp = await response.json(response);
-  //     console.log(fetchPlaylistResp)
-  //     // setDelSongID(fetchPlaylistz);
-  //   }
-  //   fetchDeletePlaylist();
-  // }, []);
-  // console.log(delsongid)
-
-
-
   return ( 
     <div>
       <div>
@@ -92,16 +75,13 @@ export default function PlaylistsCard() {
                     aria-controls="panel1a-content"
                     id="panel1a-header"
                   >
-
                   <PlayListBox data={{playlistname:item.PlayListName, playlistcount:item.PlayListCount}}/>
-
                   </AccordionSummary>
                   <AccordionDetails>
                     <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
                       <Button>Load</Button>
                       <Button>Edit</Button>
                       <PlayListDeleteButton data={{playlistID:item.PlayListID}}/>
-                      {/* <Button onClick={() => setDelSongID(item.PlayListID)}>Delete</Button> */}
                     </ButtonGroup>
                   </AccordionDetails>
                 </Accordion>

@@ -6,10 +6,8 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
 import { makeStyles } from '@material-ui/core/styles';
-// import PlayArrowIcon from '@material-ui/icons/PlayArrow';
-// import PauseIcon from '@material-ui/icons/Pause';
 import AddIcon from '@material-ui/icons/Add';
-// import AmpBarComp from '../components/AmpBarComp';
+import IconButton from '@material-ui/core/IconButton'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -91,12 +89,13 @@ export default function SongCard() {
                   <Typography variant="subtitle1" color="textSecondary">
                     {item.artist}
                   </Typography>
-                  
                 </CardContent>
               </div>
               <div key={item.fileID} className={classes.fuckme}>
                 <Tooltip title="Add to Playlist">
-                  <AddIcon className={classes.fuck}/>
+                  <IconButton>
+                    <AddIcon className={classes.fuck}/>
+                  </IconButton>
                 </Tooltip>
               </div>
             </Card>

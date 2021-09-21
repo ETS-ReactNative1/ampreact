@@ -34,11 +34,16 @@ const useStyles = makeStyles((theme) => ({
 
 export default function AddPlaylist() {
   const classes = useStyles();
-  const [value, setValue] = React.useState('Controlled');
 
-  const handleChange = (event) => {
-    setValue(event.target.value);
+  const [name, setName] = React.useState();
+  const handleNameChange = (event) => {
+    setName(event.target.value);
   };
+
+  const handleClick = (event) => {
+    fetch(`http://192.168.0.91:9090/AddPlayList?name=${name}`)
+    .then(response => console.log(response))
+  }
 
   return (
     <div className={classes.Box1Div}>
@@ -52,18 +57,10 @@ export default function AddPlaylist() {
               placeholder="Playlist Name"
               multiline
               variant="outlined"
-              onChange={handleChange}
-            />
-            <TextField
-              id="Number"
-              label="Number Of Songs"
-              placeholder="Number Of Songs"
-              multiline
-              variant="outlined"
-              onChange={handleChange}
+              onChange={handleNameChange}
             />
           </div>
-          <Button className={classes.AddPlaylistbutton}>Create</Button>
+          <Button href="/Playlists" onClick={handleClick} className={classes.AddPlaylistbutton}>Create</Button>
         </form>
       </Box>
     </div>

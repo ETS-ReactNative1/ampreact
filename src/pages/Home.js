@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-// import AmpBarComp from '../components/AmpBarComp';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,18 +32,13 @@ export default function Home() {
 
   return (
   <div>
-    {/* <AmpBarComp /> */}
     <div className={classes.Home}>
-      
       <div className={classes.root}>
         <Grid container spacing={2}>
           {data.map(item =>
-          
             <Grid item xs={6} sm={3} key={item}>
               <a href="/Albums"><img src={item} className={classes.homeImage} alt="logo" /></a>
-              
             </Grid>
-         
           )}
         </Grid>
       </div>
