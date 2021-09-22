@@ -34,9 +34,9 @@ import HomeIcon from '@material-ui/icons/Home';
 import BottomPlayerControls from '../components/BottomPlayerControls';
 // import BottomPlayerControls from './BottomPlayerControls';
 // import { ButtonGroup } from '@material-ui/core';
-import AddIcon from '@material-ui/icons/Add';
-import RemoveIcon from '@material-ui/icons/Remove';
-import PlayArrowIcon from '@material-ui/icons/PlayArrow';
+// import AddIcon from '@material-ui/icons/Add';
+// import RemoveIcon from '@material-ui/icons/Remove';
+// import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 
 import ReactAudioPlayer from 'react-audio-player';
 
@@ -86,8 +86,8 @@ export default function AmpBarComp() {
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-      <List style={{backgroundColor: "grey"}}>
-        <ListItem>
+      <List >
+        <ListItem button>
           <ListItemIcon><HomeIcon /></ListItemIcon>
           <Link to="/">
             <ListItemText primary={"Home"} />
@@ -139,7 +139,7 @@ export default function AmpBarComp() {
         className={"Audio2"}
       />
       <AppBar position="static" color="transparent">
-        <Toolbar >
+        <Toolbar>
           <IconButton onClick={toggleDrawer('left', true)} edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
           </IconButton>
@@ -149,7 +149,7 @@ export default function AmpBarComp() {
             </Drawer>
           </React.Fragment>
           <Typography variant="h6" className={classes.title}>
-            AmpGo
+            {/* AmpGo */}
           </Typography>
           <BottomPlayerControls />
         </Toolbar>

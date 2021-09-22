@@ -6,6 +6,8 @@ import PauseIcon from '@material-ui/icons/Pause';
 import IconButton from '@material-ui/core/IconButton';
 import RemoveIcon from '@material-ui/icons/Remove';
 import AddIcon from '@material-ui/icons/Add';
+import SettingsIcon from '@material-ui/icons/Settings';
+import Tooltip from '@material-ui/core/Tooltip';
 
 const useStyles = makeStyles({
   root: {
@@ -42,15 +44,31 @@ export default function SimpleBottomNavigation() {
   return (
     <div>
       <Box className={classes.root} display="flex" flexDirection="row" justifyContent="center" alignItems="center">
-        <IconButton color="inherit"><RemoveIcon color="inherit" style={{fontSize: 37}}/></IconButton>
+        <Tooltip title="Previous Song">
+          <IconButton color="inherit"><RemoveIcon color="inherit" style={{fontSize: 37}}/></IconButton>
+        </Tooltip>
+        
         { 
             showIcon 
         ? 
-            <IconButton color="inherit"><PlayArrowIcon color="inherit" style={{fontSize: 37}} onClick={() => playSong()} /></IconButton>
+          <Tooltip title="Play Song">
+            <IconButton color="inherit" onClick={() => playSong()} ><PlayArrowIcon color="inherit" style={{fontSize: 37}}/></IconButton>
+          </Tooltip>
+            
         :
-            <IconButton color="inherit"><PauseIcon color="inherit" style={{fontSize: 37}} onClick={() => stopSong()} /></IconButton>
+          <Tooltip title="Pause Song">
+            <IconButton color="inherit" onClick={() => stopSong()} ><PauseIcon color="inherit" style={{fontSize: 37}}/></IconButton>
+          </Tooltip>
+            
         }
-        <IconButton color="inherit" style={{fontSize: 37}}><AddIcon color="inherit"/></IconButton>
+        <Tooltip title="Next Song">
+          <IconButton color="inherit" style={{fontSize: 37}}><AddIcon color="inherit"/></IconButton>
+        </Tooltip>
+        <Tooltip title="Select Playlist">
+          <IconButton href="/SelectPlaylist" color="inherit" style={{fontSize: 37}}><SettingsIcon color="inherit"/></IconButton>
+        </Tooltip>
+        
+        
       </Box>
     </div>
   );

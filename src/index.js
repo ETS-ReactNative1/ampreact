@@ -8,12 +8,16 @@ import Songs from './pages/Songs.js';
 import Playlists from './pages/Playlists';
 import AddPlaylist from './pages/AddPlaylist';
 import Player from './pages/Player';
-import AlbumsSongs from './pages/SongsForAlbum';
+// import AlbumsSongs from './pages/SongsForAlbum';
 import SongsForAlbum from './pages/SongsForAlbum';
 import './index.css';
 import Artists from './pages/Artists';
 import AmpBarComp from './components/AmpBarComp';
 import AddRandomPlaylist from './pages/AddRandomPlaylist.js';
+
+
+
+import SelectPlaylist from './pages/SelectPlaylist';
 
 export default function IndexPage({props}) {
 
@@ -34,7 +38,7 @@ export default function IndexPage({props}) {
       <Route path='/AddRandomPlaylist' component={AddRandomPlaylist} />
       <Route path='/Player' component={Player} />
       <Route path='/SongsForAlbum' component={SongsForAlbum} />
-      <Route path='/Z' component={AlbumsSongs} />
+      <Route path='/SelectPlaylist' component={SelectPlaylist} />
     </div>
   );
 }

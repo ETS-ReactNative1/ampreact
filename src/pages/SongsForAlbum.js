@@ -5,9 +5,10 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import AddIcon from '@material-ui/icons/Add'
-import Tooltip from '@material-ui/core/Tooltip';
-import IconButton from '@material-ui/core/IconButton';
+import AddToPlaylistButton from '../components/AddToPlaylistButton';
+// import AddIcon from '@material-ui/icons/Add'
+// import Tooltip from '@material-ui/core/Tooltip';
+// import IconButton from '@material-ui/core/IconButton';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -97,14 +98,17 @@ export default function SongsForAlbum() {
                   </Typography>
                 </CardContent>
               </div>
-              <div className={classes.fuckme}>
-                <Tooltip title="Add to Playlist">
+              
+            </Card>
+            <div className={classes.fuckme}>
+                <AddToPlaylistButton />
+
+                {/* <Tooltip title="Add to Playlist">
                   <IconButton>
                     <AddIcon className={classes.fuck}/>
                   </IconButton>
-                </Tooltip>
+                </Tooltip> */}
               </div>
-            </Card>
         </ListItem>
       </div>
       )}

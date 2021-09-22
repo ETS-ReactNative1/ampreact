@@ -78,7 +78,7 @@ export default function AddRandomPlaylist() {
               value={songcount}
             />
           </div>
-          <Button onClick={handleClick} className={classes.AddPlaylistbutton}>Create</Button>
+          <Button href="/PlayLists" onClick={handleClick} className={classes.AddPlaylistbutton}>Create</Button>
         </form>
       </Box>
     </div>

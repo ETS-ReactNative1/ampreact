@@ -91,14 +91,15 @@ export default function SongCard() {
                   </Typography>
                 </CardContent>
               </div>
-              <div key={item.fileID} className={classes.fuckme}>
+              
+            </Card>
+            <div key={item.fileID} className={classes.fuckme}>
                 <Tooltip title="Add to Playlist">
-                  <IconButton>
+                  <IconButton style={{color: "gold"}}>
                     <AddIcon className={classes.fuck}/>
                   </IconButton>
                 </Tooltip>
               </div>
-            </Card>
           </ListItem>
         </div>
         )}
