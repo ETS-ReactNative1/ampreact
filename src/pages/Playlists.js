@@ -40,7 +40,8 @@ export default function PlaylistsCard() {
     }
     fetchPlaylists();
   }, []);
-  console.log(data)
+  var playlists = JSON.stringify(data)
+  localStorage.setItem("playlistList", playlists);
 
   return ( 
     <div>

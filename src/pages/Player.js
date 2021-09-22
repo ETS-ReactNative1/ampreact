@@ -59,8 +59,8 @@ export default function PlayerCard(props) {
   //   audioEl.pause()
   // }
 
-  var store = require('store');
-  var picpath = store.get('currentArtHTTP');
+  
+  var picpath = localStorage.getItem('currentArtHTTP');
   console.log(picpath['currentArtHTTP'])
 
   return ( 

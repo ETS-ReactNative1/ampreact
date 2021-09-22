@@ -39,23 +39,12 @@ export default function Artists() {
     fetchArtists();
   }, []);
 
-  
-
-  var store = require('store')
-  // var oldpage = store.get('currentplaylistIDpage')
-  // console.log(oldpage.currentplaylistIDpage)
-  // var newoldpage = store.set('previousplaylistIDpage', {previousplaylistIDpage:oldpage.currentplaylistIDpage})
-  // var newpage = store.set('currentplaylistIDpage', { currentplaylistIDpage:"Artist" })
-  
-
-
   function albumIdToLocalStorage(albid, albname) {
-    store.set('albumID', { albumID:albid })
-    store.set('albname', { albname:albname })
+    localStorage.setItem('albumID', albid)
+    localStorage.setItem('albname', albname)
   };
   
   return (
-
     <div className={classes.root}>
       {data.map((item) =>
         <Accordion className={classes.acord} key={item.ArtistID}>

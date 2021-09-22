@@ -39,7 +39,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function AlbumCard() {
   const classes = useStyles();
-  var store = require('store')
   const [data, setData] = useState([])
 
   useEffect(() => {
@@ -56,8 +55,8 @@ export default function AlbumCard() {
   console.log(data)
   
   function songIdToLocalStorage(albid, albname) {
-    store.set('albumID', { albumID:albid })
-    store.set('albname', { albname:albname })
+    localStorage.setItem('albumID', albid)
+    localStorage.setItem('albname', albname)
   };
 
   return (

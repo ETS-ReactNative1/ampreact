@@ -17,7 +17,7 @@ import AddRandomPlaylist from './pages/AddRandomPlaylist.js';
 
 
 
-import SelectPlaylist from './pages/SelectPlaylist';
+// import SelectPlaylist from './pages/SelectPlaylist';
 
 export default function IndexPage({props}) {
 
@@ -38,7 +38,7 @@ export default function IndexPage({props}) {
       <Route path='/AddRandomPlaylist' component={AddRandomPlaylist} />
       <Route path='/Player' component={Player} />
       <Route path='/SongsForAlbum' component={SongsForAlbum} />
-      <Route path='/SelectPlaylist' component={SelectPlaylist} />
+      {/* <Route path='/SelectPlaylist' component={SelectPlaylist} /> */}
     </div>
   );
 }

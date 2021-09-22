@@ -5,7 +5,10 @@ import IconButton from '@material-ui/core/IconButton';
 
 
 export default function AddToPlaylist() {
-
+    var plList = localStorage.getItem("playlistList")
+    var newplList = JSON.parse(plList)
+    console.log(newplList)
+    
     return (
         <Tooltip title="Add to Playlist">
             <IconButton>

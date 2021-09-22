@@ -50,7 +50,9 @@ export default function AddRandomPlaylist() {
 
   const handleClick = () => {
     fetch(`http://192.168.0.91:9090/AddRandomPlaylist?songcount=${songcount}&&name=${name}`)
-        .then(response => console.log(response));
+        .then(response => 
+          console.log(response)
+      )
   };
 
   return (

@@ -41,9 +41,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SongsForAlbum() {
   const classes = useStyles();
-  var store = require('store')
-  var albumID = store.get('albumID')
-  var albname = store.get('albname')
+  var albumID = localStorage.getItem('albumID')
+  var albname = localStorage.getItem('albname')
   const [data, setData] = useState([])
 
   useEffect(() => {
@@ -60,12 +59,12 @@ export default function SongsForAlbum() {
   }, []);
 
   function songIdToLocalStorage(songid, art, alb, title, arthttp, songhttp) {
-    store.set('songID', { songID:songid })
-    store.set('currentArtist', { currentArtist:art })
-    store.set('currentAlbum', { currentAlbum:alb })
-    store.set('currentSong', { currentSong:title })
-    store.set('currentArtHTTP', { currentArtHTTP:arthttp })
-    store.set('currentSongHTTP', { currentSongHTTP:songhttp })
+    localStorage.setItem('songID', songid)
+    localStorage.setItem('currentArtist', art)
+    localStorage.setItem('currentAlbum', alb)
+    localStorage.setItem('currentSong', title)
+    localStorage.setItem('currentArtHTTP', arthttp)
+    localStorage.setItem('currentSongHTTP', songhttp)
     document.getElementById("Audio2").setAttribute('src', songhttp);
   };
 

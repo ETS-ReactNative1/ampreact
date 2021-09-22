@@ -9,6 +9,10 @@ import AddIcon from '@material-ui/icons/Add';
 import SettingsIcon from '@material-ui/icons/Settings';
 import Tooltip from '@material-ui/core/Tooltip';
 
+// import Button from '@material-ui/core/Button';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+
 const useStyles = makeStyles({
   root: {
     width: '100%',
@@ -26,7 +30,7 @@ export default function SimpleBottomNavigation() {
   const classes = useStyles();
   const [showIcon, setShowIcon] = React.useState(true);
 
-  function playSong() {
+  var playSong = () => {
     setShowIcon(false)
     //   document.getElementById("Audio2").setAttribute('src', songhttp);
     const audioEl1 = document.getElementsByClassName("Audio2")[0]
@@ -34,39 +38,82 @@ export default function SimpleBottomNavigation() {
 
   }
 
-  function stopSong() {
+  var stopSong = () => {
     setShowIcon(true)
     //   document.getElementById("Audio2").setAttribute('src', songhttp);
     const audioEl2 = document.getElementsByClassName("Audio2")[0]
     audioEl2.pause()
   }
 
+
+  const [plists, setPLists] = React.useState([])
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleSettingsClick = (event) => {
+    setAnchorEl(event.currentTarget);
+    var playlistsSTRING = localStorage.getItem('playlistList')
+    
+    var newplist = JSON.parse(playlistsSTRING)
+    setPLists(newplist)
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+    console.log("fuckme")
+  };
+
+
   return (
     <div>
       <Box className={classes.root} display="flex" flexDirection="row" justifyContent="center" alignItems="center">
         <Tooltip title="Previous Song">
-          <IconButton color="inherit"><RemoveIcon color="inherit" style={{fontSize: 37}}/></IconButton>
+          <IconButton color="inherit" key={index}>
+            <RemoveIcon color="inherit" style={{fontSize: 37}}/>
+          </IconButton>
+         
         </Tooltip>
         
         { 
             showIcon 
         ? 
           <Tooltip title="Play Song">
-            <IconButton color="inherit" onClick={() => playSong()} ><PlayArrowIcon color="inherit" style={{fontSize: 37}}/></IconButton>
+            <IconButton color="inherit" onClick={playSong} ><PlayArrowIcon color="inherit" style={{fontSize: 37}}/></IconButton>
           </Tooltip>
             
         :
           <Tooltip title="Pause Song">
-            <IconButton color="inherit" onClick={() => stopSong()} ><PauseIcon color="inherit" style={{fontSize: 37}}/></IconButton>
+            <IconButton color="inherit" onClick={stopSong} ><PauseIcon color="inherit" style={{fontSize: 37}}/></IconButton>
           </Tooltip>
             
         }
         <Tooltip title="Next Song">
           <IconButton color="inherit" style={{fontSize: 37}}><AddIcon color="inherit"/></IconButton>
         </Tooltip>
-        <Tooltip title="Select Playlist">
-          <IconButton href="/SelectPlaylist" color="inherit" style={{fontSize: 37}}><SettingsIcon color="inherit"/></IconButton>
-        </Tooltip>
+
+        
+        
+          <IconButton aria-controls="simple-menu" aria-haspopup="true" onClick={handleSettingsClick} color="inherit" style={{fontSize: 37}}>
+            <Tooltip title="Select Playlist">
+              <SettingsIcon color="inherit"/>
+            </Tooltip>
+          </IconButton>
+          <Menu
+            id="simple-menu"
+            anchorEl={anchorEl}
+            keepMounted
+            open={Boolean(anchorEl)}
+            onClose={handleClose}
+          >
+            {plists.map((item) => 
+              <MenuItem onClick={handleClose}>{item.PlayListName}</MenuItem>
+            )}
+
+            
+            {/* <MenuItem onClick={handleClose}>My account</MenuItem>
+            <MenuItem onClick={handleClose}>Logout</MenuItem> */}
+          </Menu>
+      
         
         
       </Box>

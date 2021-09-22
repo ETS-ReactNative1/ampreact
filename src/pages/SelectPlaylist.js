@@ -29,10 +29,10 @@ export default function SelectPlaylist() {
 
 
     // const [value2, setValue2] = useState();
-    var store = require('store')
+    
     const handleClick = (plid) => {
         // setValue2(plid)
-        store.set('currentplaylistID', { currentplaylistID:plid })
+        localStorage.setItem('currentplaylistID', { currentplaylistID:plid })
     //     //   setValue(event.target.value);
     };
 

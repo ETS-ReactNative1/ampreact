@@ -29,11 +29,6 @@ export default function Home() {
     }
     fetchHome();
   }, []);
-  var store = require('store')
-  // var oldpage = store.get('currentplaylistIDpage')
-  // var newoldpage = store.set('previousplaylistIDpage', {previousplaylistIDpage:oldpage})
-  // var newpage = store.set('currentplaylistIDpage', { currentplaylistIDpage:"Home" })
-  
   
   return (
   <div>

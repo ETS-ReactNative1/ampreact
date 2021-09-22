@@ -40,9 +40,10 @@ export default function AddPlaylist() {
     setName(event.target.value);
   };
 
+  
   const handleClick = (event) => {
     fetch(`http://192.168.0.91:9090/AddPlaylist?name=${name}`)
-    .then(response => console.log(response))
+    .then(response => console.log(response));
   }
 
   return (

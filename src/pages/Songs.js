@@ -58,12 +58,10 @@ export default function SongCard() {
     }
     fetchSongs();
   }, []);
-
-  var store = require('store');
   
   function songIdToLocalStorage(songid) {
     console.log(songid)
-    store.set('songID', { songID:songid })
+    localStorage.setItem('songID', songid)
     playAudio(songid)
   };
   
