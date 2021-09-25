@@ -14,6 +14,9 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import DeleteIcon from '@material-ui/icons/Delete';
 
+import GetAppIcon from '@material-ui/icons/GetApp';
+import EditIcon from '@material-ui/icons/Edit';
+
 const useStyles = makeStyles({
   root: {
     width: '100%',
@@ -66,6 +69,43 @@ export default function SimpleBottomNavigation() {
   return (
     <div>
       <Box className={classes.root} display="flex" flexDirection="row" justifyContent="center" alignItems="center">
+
+          <Tooltip title="Load Selected Playlist">
+            <IconButton color="inherit" style={{fontSize: 37}}>
+              <GetAppIcon color="inherit"/>
+            </IconButton>
+          </Tooltip>
+
+          <Tooltip title="Edit Selected Playlist">
+            <IconButton color="inherit" style={{fontSize: 37}}>
+              <EditIcon color="inherit"/>
+            </IconButton>
+          </Tooltip>
+
+          <IconButton aria-controls="simple-menu" aria-haspopup="true" onClick={handleSettingsClick} color="inherit" style={{fontSize: 37}}>
+            <Tooltip title="Select A Playlist">
+              <SettingsIcon color="inherit"/>
+            </Tooltip>
+          </IconButton>
+          <Menu
+            id="simple-menu"
+            anchorEl={anchorEl}
+            keepMounted
+            open={Boolean(anchorEl)}
+            onClose={handleClose}
+          >
+            {plists.map((item) => 
+              <MenuItem key={item.PlayListID} onClick={() => handleClose(item.PlayListID)}>{item.PlayListName}</MenuItem>
+            )}
+          </Menu>
+          <Tooltip title="Delete Selected Playlist">
+            <IconButton color="inherit" style={{fontSize: 37}}>
+              <DeleteIcon color="inherit"/>
+            </IconButton>
+          </Tooltip>
+
+
+
         <Tooltip title="Previous Song">
           <IconButton color="inherit" >
             <RemoveIcon color="inherit" style={{fontSize: 37}}/>
@@ -92,7 +132,7 @@ export default function SimpleBottomNavigation() {
 
         
         
-          <IconButton aria-controls="simple-menu" aria-haspopup="true" onClick={handleSettingsClick} color="inherit" style={{fontSize: 37}}>
+          {/* <IconButton aria-controls="simple-menu" aria-haspopup="true" onClick={handleSettingsClick} color="inherit" style={{fontSize: 37}}>
             <Tooltip title="Select A Playlist">
               <SettingsIcon color="inherit"/>
             </Tooltip>
@@ -112,7 +152,7 @@ export default function SimpleBottomNavigation() {
             <IconButton color="inherit" style={{fontSize: 37}}>
               <DeleteIcon color="inherit"/>
             </IconButton>
-          </Tooltip>
+          </Tooltip> */}
       </Box>
     </div>
   );

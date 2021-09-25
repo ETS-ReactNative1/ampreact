@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-// import Box from '@material-ui/core/Box';
+import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import List from '@material-ui/core/List';
@@ -17,6 +17,9 @@ import PlayListDeleteButton from '../components/PlayListDeleteButton';
 
 // import AddPlaylists from '../components/AddPlaylistForm';
 // import AddRandomPlaylists from '../components/AddRandomPlaylistForm';
+
+import AddPlaylistDialog from '../components/AddPlaylistDialog';
+import AddRandomDialog from '../components/AddRandomDialog';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,52 +47,18 @@ export default function PlaylistsCard() {
   var playlists = JSON.stringify(data);
   localStorage.setItem("playlistList", playlists);
 
-  // const [showadd, setShowAdd] = useState(false)
-  // const handleAddClick = () => {
-  //   if (showadd) {
-  //     setShowAdd(false)
-  //   } else {
-  //     setShowAdd(true)
-  //   }
-  // }
-
-  // const [showaddrandom, setShowAddRandom] = useState(false);
-  // const handleAddRandomClick = () => {
-  //   if (showaddrandom) {
-  //     setShowAddRandom(false);
-  //   } else {
-  //     setShowAddRandom(true);
-  //   }
-  // }
 
   return ( 
     <div>
-      {/* <div>
+      <div>
         <Box className={classes.p1}>
-          <h1 >Playlists</h1>
+          <h1>Playlists</h1>
           <ButtonGroup style={{padding: "1em"}}>
-            <Button 
-              data={{showadd:showadd}}
-              onClick={handleAddClick}
-              // href="/AddPlaylist"
-              size="large" 
-              variant="contained" 
-              style={{backgroundColor: "black", color: "gold"}}>
-              Add
-            </Button>
-            <Button 
-              // href="/AddRandomPlaylist"
-              onClick={handleAddRandomClick}
-              size="large" 
-              variant="contained" 
-              style={{backgroundColor: "black", color: "gold"}}>
-              Add Random
-            </Button>
+            <AddPlaylistDialog />
+            <AddRandomDialog />
           </ButtonGroup>
         </Box>
-        {showadd ? <AddPlaylists /> : null}
-        {showaddrandom ? <AddRandomPlaylists /> : null }
-      </div> */}
+      </div>
         <div className={classes.root}>
           <List >
             {data.map((item) =>

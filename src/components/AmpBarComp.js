@@ -31,7 +31,7 @@ import AssignmentIcon from '@material-ui/icons/Assignment';
 import AlbumIcon from '@material-ui/icons/Album';
 import MusicNoteIcon from '@material-ui/icons/MusicNote';
 import HomeIcon from '@material-ui/icons/Home';
-import BottomPlayerControls from '../components/BottomPlayerControls';
+import BottomPlayerControls from './PlayerControls';
 import Tooltip from '@material-ui/core/Tooltip';
 // import BottomPlayerControls from './BottomPlayerControls';
 // import { ButtonGroup } from '@material-ui/core';
@@ -124,7 +124,7 @@ export default function AmpBarComp() {
         <ListItem>
           <ListItemIcon><MusicNoteIcon /></ListItemIcon>
             <Link to="/Player" >
-              <ListItemText primary={"Player"} />
+              <ListItemText primary={"Add Playlists"} />
             </Link>
         </ListItem>
       </List>
