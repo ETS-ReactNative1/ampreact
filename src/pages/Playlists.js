@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Box from '@material-ui/core/Box';
+// import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import List from '@material-ui/core/List';
@@ -15,6 +15,9 @@ import PlayListBox from '../components/PlayListBox';
 import PlayListDeleteButton from '../components/PlayListDeleteButton';
 
 
+// import AddPlaylists from '../components/AddPlaylistForm';
+// import AddRandomPlaylists from '../components/AddRandomPlaylistForm';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
@@ -26,10 +29,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function PlaylistsCard() {
   const classes = useStyles();
-
   
   const [data, setData] = useState([])
-
   useEffect(() => {
     async function fetchPlaylists() {
       const response = await fetch(
@@ -40,24 +41,45 @@ export default function PlaylistsCard() {
     }
     fetchPlaylists();
   }, []);
-  var playlists = JSON.stringify(data)
+  var playlists = JSON.stringify(data);
   localStorage.setItem("playlistList", playlists);
+
+  // const [showadd, setShowAdd] = useState(false)
+  // const handleAddClick = () => {
+  //   if (showadd) {
+  //     setShowAdd(false)
+  //   } else {
+  //     setShowAdd(true)
+  //   }
+  // }
+
+  // const [showaddrandom, setShowAddRandom] = useState(false);
+  // const handleAddRandomClick = () => {
+  //   if (showaddrandom) {
+  //     setShowAddRandom(false);
+  //   } else {
+  //     setShowAddRandom(true);
+  //   }
+  // }
 
   return ( 
     <div>
-      <div>
+      {/* <div>
         <Box className={classes.p1}>
           <h1 >Playlists</h1>
           <ButtonGroup style={{padding: "1em"}}>
             <Button 
-              href="/AddPlaylist"
+              data={{showadd:showadd}}
+              onClick={handleAddClick}
+              // href="/AddPlaylist"
               size="large" 
               variant="contained" 
               style={{backgroundColor: "black", color: "gold"}}>
               Add
             </Button>
             <Button 
-              href="/AddRandomPlaylist"
+              // href="/AddRandomPlaylist"
+              onClick={handleAddRandomClick}
               size="large" 
               variant="contained" 
               style={{backgroundColor: "black", color: "gold"}}>
@@ -65,7 +87,9 @@ export default function PlaylistsCard() {
             </Button>
           </ButtonGroup>
         </Box>
-      </div>
+        {showadd ? <AddPlaylists /> : null}
+        {showaddrandom ? <AddRandomPlaylists /> : null }
+      </div> */}
         <div className={classes.root}>
           <List >
             {data.map((item) =>

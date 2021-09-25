@@ -32,6 +32,7 @@ import AlbumIcon from '@material-ui/icons/Album';
 import MusicNoteIcon from '@material-ui/icons/MusicNote';
 import HomeIcon from '@material-ui/icons/Home';
 import BottomPlayerControls from '../components/BottomPlayerControls';
+import Tooltip from '@material-ui/core/Tooltip';
 // import BottomPlayerControls from './BottomPlayerControls';
 // import { ButtonGroup } from '@material-ui/core';
 // import AddIcon from '@material-ui/icons/Add';
@@ -140,9 +141,11 @@ export default function AmpBarComp() {
       />
       <AppBar position="static" color="transparent">
         <Toolbar>
-          <IconButton onClick={toggleDrawer('left', true)} edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon />
-          </IconButton>
+          <Tooltip title="Menu Items">
+            <IconButton onClick={toggleDrawer('left', true)} edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+              <MenuIcon />
+            </IconButton>
+          </Tooltip>
           <React.Fragment key={'left'}>
             <Drawer anchor={'left'} open={state['left']} onClose={toggleDrawer('left', false)}>
               {list('left')}

@@ -1,4 +1,5 @@
-import React from 'react';
+// import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import ReactRouterDOM from 'react-router-dom';
 const { BrowserRouter, Route } = ReactRouterDOM;
@@ -6,20 +7,34 @@ import Home from './pages/Home.js';
 import Albums from './pages/Albums.js';
 import Songs from './pages/Songs.js';
 import Playlists from './pages/Playlists';
-import AddPlaylist from './pages/AddPlaylist';
+// import AddPlaylist from './pages/AddPlaylist';
 import Player from './pages/Player';
 // import AlbumsSongs from './pages/SongsForAlbum';
 import SongsForAlbum from './pages/SongsForAlbum';
 import './index.css';
 import Artists from './pages/Artists';
 import AmpBarComp from './components/AmpBarComp';
-import AddRandomPlaylist from './pages/AddRandomPlaylist.js';
+// import AddRandomPlaylist from './pages/AddRandomPlaylist.js';
 
 
 
 // import SelectPlaylist from './pages/SelectPlaylist';
 
 export default function IndexPage({props}) {
+  const [data, setData] = useState([])
+
+  useEffect(() => {
+    async function fetchPlaylists() {
+      const response = await fetch(
+        "http://192.168.0.91:9090/AllPlaylists"
+      );
+      const fetchPlaylistz = await response.json(response);
+      setData(fetchPlaylistz);
+    }
+    fetchPlaylists();
+  }, []);
+  var playlists = JSON.stringify(data);
+  localStorage.setItem("playlistList", playlists);
 
   return (
     <div >
@@ -34,8 +49,8 @@ export default function IndexPage({props}) {
       <Route path='/Albums' component={Albums} />
       <Route path='/Songs' component={Songs} />
       <Route path='/Playlists' component={Playlists} />
-      <Route path='/AddPlaylist' component={AddPlaylist} />
-      <Route path='/AddRandomPlaylist' component={AddRandomPlaylist} />
+      {/* <Route path='/AddPlaylist' component={AddPlaylist} /> */}
+      {/* <Route path='/AddRandomPlaylist' component={AddRandomPlaylist} /> */}
       <Route path='/Player' component={Player} />
       <Route path='/SongsForAlbum' component={SongsForAlbum} />
       {/* <Route path='/SelectPlaylist' component={SelectPlaylist} /> */}

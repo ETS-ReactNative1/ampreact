@@ -41,14 +41,18 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SongsForAlbum() {
   const classes = useStyles();
-  var albumID = localStorage.getItem('albumID')
-  var albname = localStorage.getItem('albname')
+  var albumIDD = localStorage.getItem('albumID')
+  var albumID = JSON.parse(albumIDD)
+
+  var albumm = localStorage.getItem('album')
+  var album  = JSON.parse(albumm)
+
   const [data, setData] = useState([])
 
   useEffect(() => {
     async function fetchSongs() {
       console.log(albumID);
-      var ALBURL = `http://192.168.0.91:9090/SongsForAlbum?selected=` + albumID['albumID'];
+      var ALBURL = `http://192.168.0.91:9090/SongsForAlbum?selected=` + albumID;
       const response = await fetch(
         ALBURL
       );
@@ -57,20 +61,21 @@ export default function SongsForAlbum() {
     }
     fetchSongs();
   }, []);
+  console.log(data);
 
   function songIdToLocalStorage(songid, art, alb, title, arthttp, songhttp) {
-    localStorage.setItem('songID', songid)
-    localStorage.setItem('currentArtist', art)
-    localStorage.setItem('currentAlbum', alb)
-    localStorage.setItem('currentSong', title)
-    localStorage.setItem('currentArtHTTP', arthttp)
-    localStorage.setItem('currentSongHTTP', songhttp)
+    localStorage.setItem('songID', JSON.stringify(songid))
+    localStorage.setItem('currentArtist', JSON.stringify(art))
+    localStorage.setItem('currentAlbum', JSON.stringify(alb))
+    localStorage.setItem('currentSong', JSON.stringify(title))
+    localStorage.setItem('currentArtHTTP', JSON.stringify(arthttp))
+    localStorage.setItem('currentSongHTTP', JSON.stringify(songhttp))
     document.getElementById("Audio2").setAttribute('src', songhttp);
   };
 
   return ( 
   <div>
-    <h1 className={classes.h1}>{albname['albname']}</h1>
+    <h1 className={classes.h1}>{album}</h1>
     <List>
       {data.map(item =>
       <div key={item.fileID}>
@@ -97,17 +102,10 @@ export default function SongsForAlbum() {
                   </Typography>
                 </CardContent>
               </div>
-              
             </Card>
             <div className={classes.fuckme}>
-                <AddToPlaylistButton />
-
-                {/* <Tooltip title="Add to Playlist">
-                  <IconButton>
-                    <AddIcon className={classes.fuck}/>
-                  </IconButton>
-                </Tooltip> */}
-              </div>
+                <AddToPlaylistButton fileID={item.fileID}/>
+            </div>
         </ListItem>
       </div>
       )}

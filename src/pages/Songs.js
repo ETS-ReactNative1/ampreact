@@ -60,16 +60,22 @@ export default function SongCard() {
   }, []);
   
   function songIdToLocalStorage(songid) {
-    console.log(songid)
-    localStorage.setItem('songID', songid)
-    playAudio(songid)
+    var songidd = JSON.stringify(songid);
+    localStorage.setItem('songID', songidd);
+    playAudio(songid);
   };
   
   function playAudio(sid) {
     const audioEl = document.getElementsByClassName('Audio2')[0]
     audioEl.setAttribute('src', sid);
-    audioEl.play()
-  }
+    audioEl.play();
+  };
+
+  function addSongToPlaylist(songid) {
+
+      // NEEED A SERVER FUNCTION HERE
+
+  };
 
   return ( 
     <div>
@@ -89,11 +95,10 @@ export default function SongCard() {
                   </Typography>
                 </CardContent>
               </div>
-              
             </Card>
             <div key={item.fileID} className={classes.fuckme}>
                 <Tooltip title="Add to Playlist">
-                  <IconButton style={{color: "gold"}}>
+                  <IconButton style={{color: "gold"}} onClick={() => addSongToPlaylist(item.fileID)} >
                     <AddIcon className={classes.fuck}/>
                   </IconButton>
                 </Tooltip>

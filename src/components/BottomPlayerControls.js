@@ -12,6 +12,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 // import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const useStyles = makeStyles({
   root: {
@@ -41,26 +42,24 @@ export default function SimpleBottomNavigation() {
   var stopSong = () => {
     setShowIcon(true)
     //   document.getElementById("Audio2").setAttribute('src', songhttp);
-    const audioEl2 = document.getElementsByClassName("Audio2")[0]
-    audioEl2.pause()
+    const audioEl2 = document.getElementsByClassName("Audio2")[0];
+    audioEl2.pause();
   }
 
 
-  const [plists, setPLists] = React.useState([])
-
+  const [plists, setPLists] = React.useState([]);
   const [anchorEl, setAnchorEl] = React.useState(null);
-
   const handleSettingsClick = (event) => {
     setAnchorEl(event.currentTarget);
-    var playlistsSTRING = localStorage.getItem('playlistList')
-    
-    var newplist = JSON.parse(playlistsSTRING)
-    setPLists(newplist)
+    var playlistsSTRING = localStorage.getItem('playlistList');
+    var newplist = JSON.parse(playlistsSTRING);
+    setPLists(newplist);
   };
 
-  const handleClose = () => {
+  function handleClose(plid) {
     setAnchorEl(null);
-    console.log("fuckme")
+    var plidd = JSON.stringify(plid);
+    localStorage.setItem("currentPlayListID", plidd);
   };
 
 
@@ -68,7 +67,7 @@ export default function SimpleBottomNavigation() {
     <div>
       <Box className={classes.root} display="flex" flexDirection="row" justifyContent="center" alignItems="center">
         <Tooltip title="Previous Song">
-          <IconButton color="inherit" key={index}>
+          <IconButton color="inherit" >
             <RemoveIcon color="inherit" style={{fontSize: 37}}/>
           </IconButton>
          
@@ -94,7 +93,7 @@ export default function SimpleBottomNavigation() {
         
         
           <IconButton aria-controls="simple-menu" aria-haspopup="true" onClick={handleSettingsClick} color="inherit" style={{fontSize: 37}}>
-            <Tooltip title="Select Playlist">
+            <Tooltip title="Select A Playlist">
               <SettingsIcon color="inherit"/>
             </Tooltip>
           </IconButton>
@@ -106,16 +105,14 @@ export default function SimpleBottomNavigation() {
             onClose={handleClose}
           >
             {plists.map((item) => 
-              <MenuItem onClick={handleClose}>{item.PlayListName}</MenuItem>
+              <MenuItem key={item.PlayListID} onClick={() => handleClose(item.PlayListID)}>{item.PlayListName}</MenuItem>
             )}
-
-            
-            {/* <MenuItem onClick={handleClose}>My account</MenuItem>
-            <MenuItem onClick={handleClose}>Logout</MenuItem> */}
           </Menu>
-      
-        
-        
+          <Tooltip title="Delete A Playlist">
+            <IconButton color="inherit" style={{fontSize: 37}}>
+              <DeleteIcon color="inherit"/>
+            </IconButton>
+          </Tooltip>
       </Box>
     </div>
   );

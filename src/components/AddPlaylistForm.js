@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function AddPlaylist() {
+export default function AddPlaylist(props) {
   const classes = useStyles();
 
   const [name, setName] = React.useState();
@@ -41,7 +41,10 @@ export default function AddPlaylist() {
   };
 
   
+  const [show, setShow] = useState(false)
   const handleClick = (event) => {
+    console.log(props.data.showadd)
+    setShow(props.data.showadd)
     fetch(`http://192.168.0.91:9090/AddPlaylist?name=${name}`)
     .then(response => console.log(response));
   }
@@ -61,7 +64,7 @@ export default function AddPlaylist() {
               onChange={handleNameChange}
             />
           </div>
-          <Button href="/Playlists" onClick={handleClick} className={classes.AddPlaylistbutton}>Create</Button>
+          <Button onClick={handleClick} className={classes.AddPlaylistbutton}>Create</Button>
         </form>
       </Box>
     </div>

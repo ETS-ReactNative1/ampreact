@@ -54,9 +54,11 @@ export default function AlbumCard() {
 
   console.log(data)
   
-  function songIdToLocalStorage(albid, albname) {
-    localStorage.setItem('albumID', albid)
-    localStorage.setItem('albname', albname)
+  function songIdToLocalStorage(albid, alb) {
+    var albidd = JSON.stringify(albid);
+    var albb = JSON.stringify(alb);
+    localStorage.setItem('albumID', albidd);
+    localStorage.setItem('album', albb);
   };
 
   return (
@@ -66,7 +68,7 @@ export default function AlbumCard() {
         <div>
           <a href="/SongsForAlbum" className={classes.fuckyou} >
             <List spacing={3} key={item.albumID}>
-              <ListItem onClick={() => songIdToLocalStorage(item.albumID)} key={item.albumID}>
+              <ListItem onClick={() => songIdToLocalStorage(item.albumID, item.album)} key={item.albumID}>
                 <Card className={classes.root} key={item.albumID}>
                   <CardMedia
                     key={item.albumID}

@@ -40,8 +40,10 @@ export default function Artists() {
   }, []);
 
   function albumIdToLocalStorage(albid, albname) {
-    localStorage.setItem('albumID', albid)
-    localStorage.setItem('albname', albname)
+    var albidd = JSON.stringify(albid);
+    var albnamee = JSON.stringify(albname);
+    localStorage.setItem('albumID', albidd);
+    localStorage.setItem('albname', albnamee);
   };
   
   return (
