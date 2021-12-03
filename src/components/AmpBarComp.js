@@ -31,9 +31,9 @@ import AssignmentIcon from '@material-ui/icons/Assignment';
 import AlbumIcon from '@material-ui/icons/Album';
 import MusicNoteIcon from '@material-ui/icons/MusicNote';
 import HomeIcon from '@material-ui/icons/Home';
-import BottomPlayerControls from './PlayerControls';
+import PlayerControls from './PlayerControls';
 import Tooltip from '@material-ui/core/Tooltip';
-// import BottomPlayerControls from './BottomPlayerControls';
+// import PlayerControls from './PlayerControls';
 // import { ButtonGroup } from '@material-ui/core';
 // import AddIcon from '@material-ui/icons/Add';
 // import RemoveIcon from '@material-ui/icons/Remove';
@@ -154,8 +154,9 @@ export default function AmpBarComp() {
           <Typography variant="h6" className={classes.title}>
             {/* AmpGo */}
           </Typography>
-          <BottomPlayerControls />
+          <PlayerControls />
         </Toolbar>
+        {/* <PlayerControls /> */}
       </AppBar>
     </div>
   );

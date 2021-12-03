@@ -31,7 +31,8 @@ export default function Artists() {
   useEffect(() => {
     async function fetchArtists() {
       const response = await fetch(
-        "http://192.168.0.91:9090/InitArtistInfo2"
+        // "http://192.168.0.91:9090/InitArtistInfo2"
+        `http://192.168.0.91:9090/ArtistAlpha?alpha=A`
       );
       const fetchArtistz = await response.json(response);
       setData(fetchArtistz);

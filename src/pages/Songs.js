@@ -51,7 +51,8 @@ export default function SongCard() {
   useEffect(() => {
     async function fetchSongs() {
       const response = await fetch(
-        "http://192.168.0.91:9090/InitialSongInfo"
+        // "http://192.168.0.91:9090/InitialSongInfo"
+        `http://192.168.0.91:9090/SongAlpha?alpha=A`
       );
       const fetchSongz = await response.json(response);
       setData(fetchSongz);

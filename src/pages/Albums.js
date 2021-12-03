@@ -44,9 +44,11 @@ export default function AlbumCard() {
   useEffect(() => {
     async function fetchAlbums() {
       const response = await fetch(
-        "http://192.168.0.91:9090/InitAlbumInfo"
+        // "http://192.168.0.91:9090/InitAlbumInfo"
+        `http://192.168.0.91:9090/AlbumAlpha?alpha=A`
       );
       const fetchAlbumz = await response.json(response);
+      console.log(fetchAlbumz)
       setData(fetchAlbumz);
     }
     fetchAlbums();
@@ -57,7 +59,7 @@ export default function AlbumCard() {
   function songIdToLocalStorage(albid, alb) {
     var albidd = JSON.stringify(albid);
     var albb = JSON.stringify(alb);
-    localStorage.setItem('albumID', albidd);
+    localStorage.setItem('AlbumID', albidd);
     localStorage.setItem('album', albb);
   };
 
@@ -67,22 +69,22 @@ export default function AlbumCard() {
       {data.map(item =>
         <div>
           <a href="/SongsForAlbum" className={classes.fuckyou} >
-            <List spacing={3} key={item.albumID}>
-              <ListItem onClick={() => songIdToLocalStorage(item.albumID, item.album)} key={item.albumID}>
-                <Card className={classes.root} key={item.albumID}>
+            <List spacing={3} key={item.AlbumID}>
+              <ListItem onClick={() => songIdToLocalStorage(item.AlbumID, item.Album)} key={item.AlbumID}>
+                <Card className={classes.root} key={item.AlbumID}>
                   <CardMedia
-                    key={item.albumID}
+                    key={item.AlbumID}
                     className={classes.cover}
-                    image={item.picHttpAddr}
+                    image={item.PicHttpAddr}
                     title="Live from space album cover"
                   />
                   <div className={classes.details}>
                     <CardContent className={classes.content} >
                       <Typography component="h5" variant="h5" >
-                        {item.album}
+                        {item.Album}
                       </Typography>
                       <Typography variant="subtitle1" color="textSecondary" >
-                        {item.artist}
+                        {item.Artist}
                       </Typography>
                     </CardContent>
                   </div>

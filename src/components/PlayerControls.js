@@ -6,16 +6,16 @@ import PauseIcon from '@material-ui/icons/Pause';
 import IconButton from '@material-ui/core/IconButton';
 import RemoveIcon from '@material-ui/icons/Remove';
 import AddIcon from '@material-ui/icons/Add';
-import SettingsIcon from '@material-ui/icons/Settings';
+// import SettingsIcon from '@material-ui/icons/Settings';
 import Tooltip from '@material-ui/core/Tooltip';
 
 // import Button from '@material-ui/core/Button';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import DeleteIcon from '@material-ui/icons/Delete';
+// import Menu from '@material-ui/core/Menu';
+// import MenuItem from '@material-ui/core/MenuItem';
+// import DeleteIcon from '@material-ui/icons/Delete';
 
-import GetAppIcon from '@material-ui/icons/GetApp';
-import EditIcon from '@material-ui/icons/Edit';
+// import GetAppIcon from '@material-ui/icons/GetApp';
+// import EditIcon from '@material-ui/icons/Edit';
 
 const useStyles = makeStyles({
   root: {
@@ -50,27 +50,27 @@ export default function SimpleBottomNavigation() {
   }
 
 
-  const [plists, setPLists] = React.useState([]);
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const handleSettingsClick = (event) => {
-    setAnchorEl(event.currentTarget);
-    var playlistsSTRING = localStorage.getItem('playlistList');
-    var newplist = JSON.parse(playlistsSTRING);
-    setPLists(newplist);
-  };
+  // const [plists, setPLists] = React.useState([]);
+  // const [anchorEl, setAnchorEl] = React.useState(null);
+  // const handleSettingsClick = (event) => {
+  //   setAnchorEl(event.currentTarget);
+  //   var playlistsSTRING = localStorage.getItem('playlistList');
+  //   var newplist = JSON.parse(playlistsSTRING);
+  //   setPLists(newplist);
+  // };
 
-  function handleClose(plid) {
-    setAnchorEl(null);
-    var plidd = JSON.stringify(plid);
-    localStorage.setItem("currentPlayListID", plidd);
-  };
+  // function handleClose(plid) {
+  //   setAnchorEl(null);
+  //   var plidd = JSON.stringify(plid);
+  //   localStorage.setItem("currentPlayListID", plidd);
+  // };
 
 
   return (
     <div>
       <Box className={classes.root} display="flex" flexDirection="row" justifyContent="center" alignItems="center">
 
-          <Tooltip title="Load Selected Playlist">
+          {/* <Tooltip title="Load Selected Playlist">
             <IconButton color="inherit" style={{fontSize: 37}}>
               <GetAppIcon color="inherit"/>
             </IconButton>
@@ -80,9 +80,9 @@ export default function SimpleBottomNavigation() {
             <IconButton color="inherit" style={{fontSize: 37}}>
               <EditIcon color="inherit"/>
             </IconButton>
-          </Tooltip>
+          </Tooltip> */}
 
-          <IconButton aria-controls="simple-menu" aria-haspopup="true" onClick={handleSettingsClick} color="inherit" style={{fontSize: 37}}>
+          {/* <IconButton aria-controls="simple-menu" aria-haspopup="true" onClick={handleSettingsClick} color="inherit" style={{fontSize: 37}}>
             <Tooltip title="Select A Playlist">
               <SettingsIcon color="inherit"/>
             </Tooltip>
@@ -102,7 +102,7 @@ export default function SimpleBottomNavigation() {
             <IconButton color="inherit" style={{fontSize: 37}}>
               <DeleteIcon color="inherit"/>
             </IconButton>
-          </Tooltip>
+          </Tooltip> */}
 
 
 
